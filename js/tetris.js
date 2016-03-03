@@ -337,7 +337,8 @@ function resize() {
 	if (settings.Size === 1 && screenHeight > 602) cellSize = 15;
 	else if (settings.Size === 2 && screenHeight > 602) cellSize = 30;
 	else if (settings.Size === 3 && screenHeight > 902) cellSize = 45;
-	else cellSize = Math.max(~~(screenHeight / 20), 10);
+	//STAS CHANGED, INITIALLY WAS (screenHeight / 20)
+	else cellSize = Math.max(~~(screenHeight / 22), 10);
 	
 	var pad = (window.innerHeight - (cellSize * 20 + 2)) / 4 + 'px';
 	content.style.padding = pad + ' 0';
@@ -403,6 +404,7 @@ addEventListener('resize', resize, false);
 	* Resets all the settings and starts the game.
 */
 function init(gt) {
+	showSidePanels();
 	if (gt === 'replay') {
 		watchingReplay = true;
 		} else {
@@ -458,31 +460,6 @@ function init(gt) {
 	clear(activeCtx);
 	clear(holdCtx);
 	
-	if (gametype === 3) {
-		// Dig Race
-		// make ten random numbers, make sure next isn't the same as last?
-		//TODO make into function or own file.
-		
-		digLines = [12, 13, 14, 15, 16, 17, 18, 19, 20, 21];
-		
-		statsLines.innerHTML = 10;
-		statsLines.innerHTML = 10;
-		var randomNums = [];
-		for (var i = 0; i < 10; i++) {
-			var random = ~~(rng.next() * 10);
-			if (random !== randomNums[i - 1])
-			randomNums.push(random);
-			else
-			i--
-		}
-		for (var y = 21; y > 11; y--) {
-			for (var x = 0; x < 10; x++) {
-				if (randomNums[y - 12] !== x)
-				stack.grid[x][y] = 8;
-			}
-		}
-		stack.draw();
-	}
 	
 	menu();
 	
@@ -878,21 +855,12 @@ function update() {
 	
 	// Win
 	// TODO
-	if (gametype !== 3) {
-		if (lines >= lineLimit) {
-			gameState = 1;
-			msg.innerHTML = 'GREAT!';
-			EndGame();
-			menu(3);
-		}
-	}
-	else {
-		if (digLines.length === 0) {
-			gameState = 1;
-			msg.innerHTML = 'GREAT!';
-			EndGame();
-			menu(3);
-		}
+	if (lines >= lineLimit) {
+		gameState = 1;
+		msg.innerHTML = 'GREAT!';
+		hideSidePanels();
+		EndGame();
+		menu(3);
 	}
 	
 	statistics();
@@ -910,91 +878,96 @@ function gameLoop() {
 	
 	if (gameState === 0) {
 		// Playing
-		
-		if (!paused) {
-			update();
-		}
-		
-		// TODO improve this with 'dirty' flags.
-		if (piece.x !== lastX ||
-		Math.floor(piece.y) !== lastY ||
-		piece.pos !== lastPos ||
-		piece.dirty) {
-			clear(activeCtx);
-			piece.drawGhost();
-			piece.draw();
-		}
-		lastX = piece.x;
-		lastY = Math.floor(piece.y);
-		lastPos = piece.pos;
-		piece.dirty = false;
-		} else if (gameState === 2) {
-		// Count Down
-		if (frame < 50) {
-			if (msg.innerHTML !== 'READY') msg.innerHTML = 'READY';
-			} else if (frame < 100) {
-			if (msg.innerHTML !== 'GO!') msg.innerHTML = 'GO!';
-			} else {
-			msg.innerHTML = '';
-			gameState = 0;
-			startTime = Date.now();
-			piece.new(preview.next());
-		}
-		// DAS Preload
-		if (lastKeys !== keysDown && !watchingReplay) {
-			replayKeys[frame] = keysDown;
-			} else if (frame in replayKeys) {
-			keysDown = replayKeys[frame];
-		}
-		if (keysDown & flags.moveLeft) {
-			lastKeys = keysDown;
-			piece.shiftDelay = settings.DAS;
-			piece.shiftReleased = false;
-			piece.shiftDir = -1;
-			} else if (keysDown & flags.moveRight) {
-			lastKeys = keysDown;
-			piece.shiftDelay = settings.DAS;
-			piece.shiftReleased = false;
-			piece.shiftDir = 1;
-		}
-		} else if (toGreyRow >= 2){
-		/**
-			* Fade to grey animation played when player loses.
-		*/
-		if (toGreyRow === 21)
+	
+	if (!paused) {
+		update();
+	}
+	
+	// TODO improve this with 'dirty' flags.
+	if (piece.x !== lastX ||
+	Math.floor(piece.y) !== lastY ||
+	piece.pos !== lastPos ||
+	piece.dirty) {
 		clear(activeCtx);
-		if (frame % 2) {
-			for (var x = 0; x < 10; x++) {
-				if (stack.grid[x][toGreyRow]) stack.grid[x][toGreyRow] = gameState - 1;
-			}
-			stack.draw();
-			toGreyRow--;
+		piece.drawGhost();
+		piece.draw();
+	}
+	lastX = piece.x;
+	lastY = Math.floor(piece.y);
+	lastPos = piece.pos;
+	piece.dirty = false;
+	} else if (gameState === 2) {
+	// Count Down
+	if (frame < 50) {
+		if (msg.innerHTML !== 'READY') msg.innerHTML = 'READY';
+		} else if (frame < 100) {
+		if (msg.innerHTML !== 'GO!') msg.innerHTML = 'GO!';
+		} else {
+		msg.innerHTML = '';
+		gameState = 0;
+		startTime = Date.now();
+		piece.new(preview.next());
+	}
+	// DAS Preload
+	if (lastKeys !== keysDown && !watchingReplay) {
+		replayKeys[frame] = keysDown;
+		} else if (frame in replayKeys) {
+		keysDown = replayKeys[frame];
+	}
+	if (keysDown & flags.moveLeft) {
+		lastKeys = keysDown;
+		piece.shiftDelay = settings.DAS;
+		piece.shiftReleased = false;
+		piece.shiftDir = -1;
+		} else if (keysDown & flags.moveRight) {
+		lastKeys = keysDown;
+		piece.shiftDelay = settings.DAS;
+		piece.shiftReleased = false;
+		piece.shiftDir = 1;
+	}
+	} else if (toGreyRow >= 2){
+	/**
+		* Fade to grey animation played when player loses.
+	*/
+	if (toGreyRow === 21)
+	clear(activeCtx);
+	if (frame % 2) {
+		for (var x = 0; x < 10; x++) {
+			if (stack.grid[x][toGreyRow]) stack.grid[x][toGreyRow] = gameState - 1;
 		}
+		stack.draw();
+		toGreyRow--;
+	}
 	}
 }
 $(document).ready(function(){
-		$.ajax({
-			url:'game.php',
-			type:'post',
-			data:{
-				action:'getBestPlayers'
-			},
-			success: function(response){
-				var data = JSON.parse(response);
-				var html = "";
-				var rank = 0;
-				$.each(data.results, function(i, item){
-					html+="<li>";
-					html+="<div class='bell-with-rank'>"+ (i+1)+ "</div>";
-					html+="<div class='name'>"+item.name+"</div>";
-					html+="<div class='score'>"+item.score+"</div>";
-					html+="</li>";
-				});
-				$(".row-hall-of-fame").html(html);
-			}
-		});
+	$.ajax({
+		url:'game.php',
+		type:'post',
+		data:{
+			action:'getBestPlayers'
+		},
+		success: function(response){
+			var data = JSON.parse(response);
+			var html = "";
+			var rank = 0;
+			$.each(data.results, function(i, item){
+				html+="<li>";
+				html+="<div class='bell-with-rank'>"+ (i+1)+ "</div>";
+				html+="<div class='name'>"+item.name+"</div>";
+				html+="<div class='score'>"+item.score+"</div>";
+				html+="</li>";
+			});
+			$(".row-hall-of-fame").html(html);
+		}
+	});
+	
+	$(".modal button.close").on("click", function(){
+		showMainPanel();
+	});
 });
 function showLeaderboard(){
+	hideMainPanel();
 	$('#myModal').modal('show');
 }
 function EndGame() {

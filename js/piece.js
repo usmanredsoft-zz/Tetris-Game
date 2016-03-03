@@ -46,6 +46,7 @@ Piece.prototype.new = function(index) {
   if (!this.moveValid(0, 0, this.tetro)) {
     gameState = 9;
     msg.innerHTML = 'BLOCK OUT!';
+	hideSidePanels();
 	EndGame();
     menu(3);
   }

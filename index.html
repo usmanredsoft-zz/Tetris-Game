@@ -3,7 +3,7 @@
 <title>Tetr.js</title>
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/modal.css">
-<!--<canvas id=bg></canvas>-->
+<canvas id=bg></canvas>
 <!--<video id=bg src=bg.webm loop autoplay></video>-->
 <div id=content>
 	
@@ -122,6 +122,12 @@
 		function showSidePanels(){
 			document.getElementById("d").style.visibility = "visible";
 			document.getElementById("a-with-c").style.visibility = "visible";
+		}
+		function hideMainPanel(){
+			document.getElementById("b").style.visibility = "hidden";
+		}
+		function showMainPanel(){
+			document.getElementById("b").style.visibility = "visible";
 		}
 		hideSidePanels();
 	</script>
