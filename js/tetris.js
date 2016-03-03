@@ -324,6 +324,7 @@ function resize() {
 	var a = document.getElementById('a');
 	var b = document.getElementById('b');
 	var c = document.getElementById('c');
+	var aWithC = document.getElementById('a-with-c');
 	var content = document.getElementById('content');
 	
 	// TODO Finalize this.
@@ -338,12 +339,13 @@ function resize() {
 	else if (settings.Size === 3 && screenHeight > 902) cellSize = 45;
 	else cellSize = Math.max(~~(screenHeight / 20), 10);
 	
-	var pad = (window.innerHeight - (cellSize * 20 + 2)) / 2 + 'px';
+	var pad = (window.innerHeight - (cellSize * 20 + 2)) / 4 + 'px';
 	content.style.padding = pad + ' 0';
 	stats.style.bottom = pad;
 	
 	// Size elements
-	a.style.padding = '0 0.5rem ' + ~~(cellSize / 2) + 'px';
+	//NOW MADE BY CSS
+	//a.style.padding = '0 0.5rem ' + ~~(cellSize / 2) + 'px';
 	
 	stackCanvas.width = activeCanvas.width = bgStackCanvas.width = cellSize * 10;
 	stackCanvas.height = activeCanvas.height = bgStackCanvas.height = cellSize * 20;
@@ -352,13 +354,15 @@ function resize() {
 	
 	holdCanvas.width = cellSize * 4;
 	holdCanvas.height = cellSize * 2;
-	a.style.width = holdCanvas.width + 'px';
-	a.style.height = holdCanvas.height + 'px';
+	//NOW MADE BY CSS
+	//a.style.width = holdCanvas.width + 'px';
+	//a.style.height = holdCanvas.height + 'px';
 	
 	previewCanvas.width = cellSize * 4;
 	previewCanvas.height = stackCanvas.height;
-	c.style.width = previewCanvas.width + 'px';
-	c.style.height = b.style.height;
+	aWithC.style.width = previewCanvas.width + 'px';
+	//NOW MADE BY CSS
+	//c.style.height = (parseInt(b.style.height) * 0.8)+"px";
 	
 	// Scale the text so it fits in the thing.
 	// TODO get rid of extra font sizes here.

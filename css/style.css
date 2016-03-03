@@ -1,3 +1,7 @@
+html,body{
+	width:100%;
+	height:100%;
+}
 @font-face {
   font-family: 'Lato';
   font-style: normal;
@@ -35,6 +39,7 @@ body {
   background: #000;
   background-size: cover;
   color: #fff;
+  padding:15px;
 }
 a {
   color: #fff;
@@ -101,11 +106,21 @@ nav a {
 
 /* Content */
 #content {
-  display: table;
-  margin: auto;
+  display: block;
   background: rgba(0,0,0,0.7);
+  height:100%;
+  margin: auto;
+  width:100%;
 }
-
+@media screen and (orientation: landscape) and (max-width:999px){
+	#content{max-width:65%;}
+}
+@media screen and (orientation: landscape) and (min-width:1000px){
+	#content{max-width:70%;}
+}
+@media screen and (orientation: landscape) and (min-width:1800px){
+	#content{max-width:30%;}
+}
 /* Canvases */
 #sprite {
   display: none;
@@ -129,9 +144,17 @@ nav a {
   z-index: -1;
 }
 #a {
+  border:2px solid yellow;
   position: relative;
   overflow: hidden;
   float: left;
+  margin: 10px 0 0;
+  height:25%;
+  width:100%;
+}
+#a-with-c{
+	float:left;
+	height:100%;
 }
 #b {
   border: 1px solid #fff;
@@ -140,12 +163,13 @@ nav a {
   overflow: hidden;
   float: left;
   z-index: 3;
+  margin-right:10px;
 }
 #c {
-  padding: 0 0.5em;
+  border: 2px solid yellow;
   position: relative;
   overflow: hidden;
-  float: left;
+  height:50%;
 }
   #bgStack {
     background: #000;
@@ -181,7 +205,7 @@ nav a {
 /* Stats */
 #stats {
   display: block;
-  position: absolute;
+  margin-right:15px;
 }
 #stats tbody {
   display: block;
@@ -189,7 +213,6 @@ nav a {
 #stats tr {
   display: block;
   width: 100%;
-  padding: 0 0.5rem;
 }
 #stats th {
   text-transform: uppercase;
@@ -328,5 +351,5 @@ nav a {
   bottom: 2em;
 }
 table{
-	border:1px solid yellow;
+	border:2px solid yellow;
 }
