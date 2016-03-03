@@ -22,10 +22,10 @@ html,body{
 }
 @font-face {
   font-family: 'FontAwesome';
-  src: url('fonts/fontawesome-webfont.eot?v=3.0.1');
-  src: url('fonts/fontawesome-webfont.eot?#iefix&v=3.0.1') format('embedded-opentype'),
-    url('fonts/fontawesome-webfont.woff?v=3.0.1') format('woff'),
-    url('fonts/fontawesome-webfont.ttf?v=3.0.1') format('truetype');
+  src: url('../fonts/fontawesome-webfont.eot?v=3.0.1');
+  src: url('../fonts/fontawesome-webfont.eot?#iefix&v=3.0.1') format('embedded-opentype'),
+    url('../fonts/fontawesome-webfont.woff?v=3.0.1') format('woff'),
+    url('../fonts/fontawesome-webfont.ttf?v=3.0.1') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
@@ -119,6 +119,9 @@ nav a {
 @media screen and (orientation: landscape) and (min-width:1000px){
 	#content{max-width:70%;}
 }
+@media screen and (orientation: landscape) and (min-width:1366px){
+	#content{max-width:40%;}
+}
 @media screen and (orientation: landscape) and (min-width:1800px){
 	#content{max-width:50%;}
 }
@@ -164,6 +167,10 @@ nav a {
 }
   #bgStack {
     background: #000;
+    background-image: url("../img/logo.png");
+    background-position: 0 45%;
+    background-size: contain;
+    background-repeat: no-repeat;
     position: absolute;
     z-index: 2;
   }
