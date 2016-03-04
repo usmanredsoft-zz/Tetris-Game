@@ -749,6 +749,7 @@ function stop(){
 	clearInterval(myInterval);
 }
 addEventListener('keydown', function(e) {
+	console.log("stas, " + e.keyCode);
 	// TODO send to menu or game depending on context.
 	if ([32,37,38,39,40].indexOf(e.keyCode) !== -1)
     e.preventDefault();

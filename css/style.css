@@ -100,6 +100,7 @@ nav li {
 .modal .close{
 	background-color:white;
 	color:#00a189;
+	padding: 0px 9px;
 	width:auto;
 }
 .button:hover, nav a:hover, .modal .close:hover{
@@ -368,4 +369,23 @@ nav li {
 }
 table{
 	border:2px solid yellow;
+}
+.arrow-container{
+	border:1px solid yellow;
+	box-sizing:border-box;
+	padding:5px;
+	margin-top:10px;
+	overflow:hidden;
+	text-align:center;
+	width:94%;
+}
+.img-first-row{
+		display:block;
+		width:30%;
+		margin:0 auto 0;
+}
+.img-down-row{
+	float:left;
+	width:30%;
+	margin:7px 1.666666% 5px;
 }

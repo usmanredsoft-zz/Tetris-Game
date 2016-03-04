@@ -8,21 +8,27 @@
 <div id=content>
 	
 	<!-- Canvases -->
-	<div id=d>
+	<div id="d">
 		
-		<ul id=replay style=display:none>
+		<ul id="replay" style="display:none">
 			<li><a onclick=replay(-1)>prev</a></li>
 			<li><a onclick=replay()>Play/Pause</a></li>
 			<li><a onclick=replay(1)>next</a></li>
 		</ul>
 		
-		<table id=stats>
+		<table id="stats">
 			<tr><td id=line>45</td><th>Line</th></tr>
 			<tr><td id=level>0</td><th>Level</th></tr>
 			<tr><td id=score>0</td><th>Score</th></tr>
 			<tr><td id=piece>0</td><th>Piece</th></tr>
 			<tr><th id=time>00:00.00</th></tr>
 		</table>
+		<div class="arrow-container">
+			<img src="img/arrowTop.png" class="img-first-row"/>
+			<img src="img/arrowLeft.png" class="img-down-row"/>
+			<img src="img/arrowBottom.png" class="img-down-row"/>
+			<img src="img/arrowRight.png" class="img-down-row"/>
+		</div>
 	</div>
 	
 	<div id="b">
@@ -84,15 +90,15 @@
 			</nav>
 		</div>
 		<div id="a-with-c">
-		<div id="c">
-			<h3>Next</h3>
-			<canvas id=preview></canvas>
-		</div>
-		
-		<div id="a">
-		<h3>Hold</h3>
-			<canvas id="hold"></canvas>
-		</div>
+			<div id="c">
+				<h3>Next</h3>
+				<canvas id=preview></canvas>
+			</div>
+			
+			<div id="a">
+				<h3>Hold</h3>
+				<canvas id="hold"></canvas>
+			</div>
 		</div>
 	</div>
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -130,6 +136,7 @@
 			document.getElementById("b").style.visibility = "visible";
 		}
 		hideSidePanels();
+		
 	</script>
 	<script src="js/tetris.js"></script>
 	<script src="js/piece.js"></script>
