@@ -24,10 +24,10 @@
 			<tr><th id=time>00:00.00</th></tr>
 		</table>
 		<div class="arrow-container">
-			<img src="img/arrowTop.png" class="img-first-row"/>
-			<img src="img/arrowLeft.png" class="img-down-row"/>
-			<img src="img/arrowBottom.png" class="img-down-row"/>
-			<img src="img/arrowRight.png" class="img-down-row"/>
+			<img src="img/arrowTop.png" class="img-first-row" onclick="arrowTopClick()"/>
+			<img src="img/arrowLeft.png" class="img-down-row" onclick="arrowLeftClick()"/>
+			<img src="img/arrowBottom.png" class="img-down-row" onclick="arrowDownClick()"/>
+			<img src="img/arrowRight.png" class="img-down-row" onclick="arrowRightClick()"/>
 		</div>
 	</div>
 	
@@ -146,3 +146,22 @@
 	<script src="js/menu.js"></script>
 	<script src="js/bg.js"></script>
 	<script>_gaq=[['_setAccount','UA-30472693-1'],['_trackPageview']];(function(d){var g=d.createElement('script'),s=d.scripts[0];g.src='//www.google-analytics.com/ga.js';s.parentNode.insertBefore(g,s)})(document)</script>
+	<script>
+		function arrowTopClick(){
+			keysDown |= flags.rotLeft;
+			setTimeout(function(){console.log("arrowTopClick");keysDown ^= flags.rotLeft}, 150);
+		}
+		function arrowLeftClick(){
+			keysDown |= flags.moveLeft;
+			setTimeout(function(){console.log("arrowLeftClick");keysDown ^= flags.moveLeft;}, 150);
+		}
+		function arrowRightClick(){
+			keysDown |= flags.moveRight;
+			setTimeout(function(){console.log("arrowRightClick");keysDown ^= flags.moveRight;}, 150);
+		}
+		function arrowDownClick(){
+			keysDown |= flags.moveDown;
+			startLoop();
+			setTimeout(function(){console.log("arrowRightClick");stopLoop();keysDown ^= flags.moveDown;}, 150);
+		}
+	</script>
