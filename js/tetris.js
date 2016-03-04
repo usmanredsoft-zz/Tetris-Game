@@ -449,8 +449,8 @@ function init(gt) {
 	linesPerLevel = lineLimit/15;
 	piecesSet = 0;
 	
-	statsPiece.innerHTML = piecesSet;
 	statsLines.innerHTML = lineLimit - lines;
+	statsPiece.innerHTML = piecesSet;
 	//console.log('initial set, should be 1 time only');
 	level = parseInt(lines/linesPerLevel + 1);
 	statsLevel.innerHTML = level;
