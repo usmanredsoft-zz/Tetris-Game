@@ -351,6 +351,7 @@ function resize() {
 	stackCanvas.width = activeCanvas.width = bgStackCanvas.width = cellSize * 10;
 	stackCanvas.height = activeCanvas.height = bgStackCanvas.height = cellSize * 20;
 	b.style.width = stackCanvas.width + 'px';
+	
 	b.style.height = stackCanvas.height + 'px';
 	
 	holdCanvas.width = cellSize * 4;
