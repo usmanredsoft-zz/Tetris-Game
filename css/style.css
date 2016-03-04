@@ -62,7 +62,15 @@ td {
 h1 {
   color: #fff;
   font-size: 2rem;
+  font-family: Tahoma, sans-serif;
   margin: 0.65em 0;
+  text-shadow: 0px 0px 2px #00a189;
+}
+.h1-img{
+	    width: 50%;
+    margin-top: 20px;
+    display: block;
+    margin: auto;
 }
 h3 {
   margin: 0;
@@ -78,8 +86,7 @@ nav > ul {
 nav li {
   display: block;
 }
-.button,
-nav a {
+.button, nav a {
   font: 1.25rem 'Lato';
   display: inline-block;
   width: 50%;
@@ -88,8 +95,12 @@ nav a {
   cursor: pointer;
   padding: 0.3rem 0.6rem 0.4rem;
   margin: 0.5em;
-  background: #000;
+  background-color: #000;
 }
+.button:hover, nav a:hover{
+	background-color:#00a189;
+} 
+
 .button {
   margin: 0;
 }
