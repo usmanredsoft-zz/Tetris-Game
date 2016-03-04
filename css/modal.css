@@ -19,6 +19,11 @@
 	border:3px solid #8a9192;
 	color:white;
 }
+.modal-title {
+    font-weight: normal;
+    text-align: center;
+    text-transform: uppercase;
+}
 .row-hall-of-fame{
 	padding:0;
 	margin:0;

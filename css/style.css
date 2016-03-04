@@ -86,7 +86,7 @@ nav > ul {
 nav li {
   display: block;
 }
-.button, nav a {
+.button, nav a, .modal .close {
   font: 1.25rem 'Lato';
   display: inline-block;
   width: 50%;
@@ -97,8 +97,14 @@ nav li {
   margin: 0.5em;
   background-color: #000;
 }
-.button:hover, nav a:hover{
+.modal .close{
+	background-color:white;
+	color:#00a189;
+	width:auto;
+}
+.button:hover, nav a:hover, .modal .close:hover{
 	background-color:#00a189;
+	color:white;
 } 
 
 .button {
