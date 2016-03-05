@@ -37,7 +37,7 @@ body {
   box-sizing:border-box;
   font: 1em 'Source Sans Pro';
   margin: 0;
-  background: #000;
+  background: rgba(0,0,0,0.7);
   background-size: cover;
   color: #fff;
   padding:15px;
@@ -124,7 +124,6 @@ nav li {
 
 /* Content */
 #content {
-  background: rgba(0,0,0,0.7);
   box-sizing:border-box;
   display: block;
   height:100%;
