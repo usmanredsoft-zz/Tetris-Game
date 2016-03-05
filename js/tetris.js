@@ -353,6 +353,10 @@ function resize() {
 	b.style.width = stackCanvas.width + 'px';
 	
 	b.style.height = stackCanvas.height + 'px';
+	stats.style.height = stackCanvas.height*0.8+"px";
+	document.getElementsByClassName("arrow-container")[0].style.height = (stackCanvas.height*0.2 - 10) +"px";
+	c.style.height = stackCanvas.height*0.7+"px";
+	a.style.height = stackCanvas.height*0.3 - 10 +"px";
 	
 	holdCanvas.width = cellSize * 4;
 	holdCanvas.height = cellSize * 2;
