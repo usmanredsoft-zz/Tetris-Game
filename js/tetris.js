@@ -19,6 +19,7 @@ var column;
 */
 var msg = document.getElementById('msg');
 var stats = document.getElementById('stats');
+var stats2 = document.getElementById('stats2');
 var statsTime = document.getElementById('time');
 var statsLines = document.getElementById('line');
 var statsLevel = document.getElementById('level');
@@ -356,7 +357,8 @@ function resize() {
 	
 	
 	b.style.height = stackCanvas.height + 'px';
-	stats.style.height = stackCanvas.height*0.8+"px";
+	stats.style.height = (stackCanvas.height*0.6 -10)+"px";
+	stats2.style.height = stackCanvas.height*0.2+"px";
 	document.getElementsByClassName("arrow-container")[0].style.height = (stackCanvas.height*0.2 - 10) +"px";
 	c.style.height = stackCanvas.height*0.7+"px";
 	a.style.height = stackCanvas.height*0.3 - 10 +"px";

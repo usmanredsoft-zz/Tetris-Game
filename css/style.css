@@ -222,30 +222,33 @@ nav li {
 }
 
 /* Stats */
-#stats {
+#stats , #stats2{
   display: block;
   margin-right:15px;
 }
-#stats tbody {
+#stats tbody,#stats2 tbody{
   display: block;
 }
-#stats tr {
+#stats tr,#stats2 tr{
   display: block;
   width: 100%;
 }
-#stats th {
+#stats th, #stats2 th{
   text-transform: uppercase;
   display: inline-block;
   width: 100%;
   vertical-align: top;
 }
-#stats td {
+#stats td, #stats2 td {
   font-size: 220%;
   font-weight: 900;
   text-align: center;
   line-height: 1;
   display: inline-block;
   width: 100%;
+}
+#stats2{
+	margin-top:10px;
 }
 #time {
   text-align: center;
