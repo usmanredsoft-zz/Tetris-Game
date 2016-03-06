@@ -183,7 +183,7 @@ nav li {
   height:62.5%;
 }
   #bgStack {
-    background: #000;
+    background: rgba(0,0,0,0.4);
     background-image: url("../img/logo.png");
     background-position: 0 45%;
     background-size: contain;
