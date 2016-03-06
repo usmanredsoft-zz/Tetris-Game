@@ -178,11 +178,20 @@ nav li {
   margin-right:10px;
 }
 #c {
-  border: 2px solid yellow;
   position: relative;
   overflow: hidden;
-  padding: 30px 10px;
+  
     box-sizing: border-box;
+}
+#c1,#c2{
+	border:2px solid yellow;
+	box-sizing:border-box;
+	padding: 20px 10px;
+	position: relative;
+    z-index: 5;
+}
+#c2{
+	margin-top:10px;
 }
   #bgStack {
     background: rgba(0,0,0,0.4);
