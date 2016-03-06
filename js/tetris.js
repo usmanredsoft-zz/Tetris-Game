@@ -587,6 +587,7 @@ function drawCell(x, y, color, ctx) {
 	* Pre-renders all mino types in all colors.
 */
 function makeSprite() {
+	console.log("making sprite");
 	var shaded = [
 		// 0         +10        -10        -20
 		['#c1c1c1', '#dddddd', '#a6a6a6', '#8b8b8b'],
@@ -758,7 +759,6 @@ function stop(){
 	clearInterval(myInterval);
 }
 addEventListener('keydown', function(e) {
-	console.log("stas, " + e.keyCode);
 	// TODO send to menu or game depending on context.
 	if ([32,37,38,39,40].indexOf(e.keyCode) !== -1)
     e.preventDefault();
