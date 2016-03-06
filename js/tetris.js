@@ -351,6 +351,9 @@ function resize() {
 	stackCanvas.width = activeCanvas.width = bgStackCanvas.width = cellSize * 10;
 	stackCanvas.height = activeCanvas.height = bgStackCanvas.height = cellSize * 20;
 	b.style.width = stackCanvas.width + 'px';
+	aWithC.style.width = stackCanvas.width*0.5 + 'px';
+	d.style.width = stackCanvas.width*0.5 + 'px';
+	
 	
 	b.style.height = stackCanvas.height + 'px';
 	stats.style.height = stackCanvas.height*0.8+"px";
@@ -366,7 +369,7 @@ function resize() {
 	
 	previewCanvas.width = cellSize * 4;
 	previewCanvas.height = stackCanvas.height;
-	aWithC.style.width = previewCanvas.width + 'px';
+	
 	//NOW MADE BY CSS
 	//c.style.height = (parseInt(b.style.height) * 0.8)+"px";
 	
@@ -379,7 +382,7 @@ function resize() {
 	
 	stats.style.width = a.style.width;
 	for (var i = 0, len = h3.length; i < len; i++) {
-		h3[i].style.lineHeight = a.style.height;
+		h3[i].style.lineHeight = parseFloat(a.style.height)*0.25 + "px";
 		h3[i].style.fontSize = stats.style.fontSize;
 	}
 	

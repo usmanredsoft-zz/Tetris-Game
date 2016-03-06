@@ -131,16 +131,16 @@ nav li {
   width:100%;
 }
 @media screen and (orientation: landscape) and (max-width:999px){
-	#content{max-width:65%;}
+	#content{max-width:80%;}
 }
 @media screen and (orientation: landscape) and (min-width:1000px){
-	#content{max-width:70%;}
+	#content{max-width:75%;}
 }
 @media screen and (orientation: landscape) and (min-width:1366px){
-	#content{max-width:55%;}
+	#content{max-width:65%;}
 }
 @media screen and (orientation: landscape) and (min-width:1825px){
-	#content{max-width:50%;}
+	#content{max-width:60%;}
 }
 /* Canvases */
 #sprite {
@@ -165,6 +165,7 @@ nav li {
 }
 #a-with-c{
 	float:left;
+	margin-left:5px;
 	height:100%;
 }
 #b {
@@ -180,7 +181,8 @@ nav li {
   border: 2px solid yellow;
   position: relative;
   overflow: hidden;
-  height:62.5%;
+  padding: 30px 10px;
+    box-sizing: border-box;
 }
   #bgStack {
     background: rgba(0,0,0,0.4);
@@ -196,6 +198,7 @@ nav li {
   #stack {
     position: absolute;
     z-index: 2;
+	transform: translateX(10%);
   }
   #active {
     position: absolute;
@@ -273,7 +276,7 @@ nav li {
                       margin .4s ease-out;
 }
 .on {
-  background: rgba(0,0,0,0.8);
+  background: rgba(0,0,0,0.5);
   opacity: 1;
   margin: 0;
 }
