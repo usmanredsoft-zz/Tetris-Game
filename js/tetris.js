@@ -965,7 +965,8 @@ function gameLoop() {
 	}
 	}
 }
-$(document).ready(function(){
+
+function getLeaderboard(){
 	$.ajax({
 		url:'game.php',
 		type:'post',
@@ -973,6 +974,7 @@ $(document).ready(function(){
 			action:'getBestPlayers'
 		},
 		success: function(response){
+			console.log("leaderboard: " + response);
 			var data = JSON.parse(response);
 			var html = "";
 			var rank = 0;
@@ -989,13 +991,14 @@ $(document).ready(function(){
 			html+="<li>";
 			html+="<a class='button' onclick='menu(0)'>Done</a>";
 			html+="</li>";
+			console.log("html made: " + html);
+			console.log($(".row-hall-of-fame"));
 			$(".row-hall-of-fame").html(html);
 		}
 	});
-	
-	$(".modal button.close").on("click", function(){
-		showMainPanel();
-	});
+} 
+$(document).ready(function(){
+	getLeaderboard();
 });
 
 function EndGame() {
