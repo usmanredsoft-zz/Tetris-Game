@@ -1031,3 +1031,7 @@ function EndGame() {
 	
 	
 }
+function sendScore(namev, scorev) {
+	$.ajax({ type:"POST", url:"insertScore.php", data:{name:namev, score:scorev} })
+	.done(function( data ) {console.log("insert response: " + data);}); 
+	}

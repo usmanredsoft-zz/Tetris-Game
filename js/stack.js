@@ -43,7 +43,7 @@ Stack.prototype.addPiece = function(tetro) {
   // Lock out
   if (!valid) {
     gameState = 9;
-    msg.innerHTML = 'LOCK OUT!';
+    msg.innerHTML = 'GAME OVER!';
     menu(3);
     return;
   }

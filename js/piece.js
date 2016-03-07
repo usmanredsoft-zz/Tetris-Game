@@ -43,9 +43,11 @@ Piece.prototype.new = function(index) {
   //preview.next();
 
   // Check for blockout.
+  
   if (!this.moveValid(0, 0, this.tetro)) {
     gameState = 9;
     msg.innerHTML = 'GAME OVER!';
+	sendScore(username, score);
 	hideSidePanels();
 	EndGame();
     menu(3);
