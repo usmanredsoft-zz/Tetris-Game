@@ -287,6 +287,7 @@ var lastX, lastY, lastPos, landed;
 var lines;
 var linesPerLevel;
 var level;
+var username;
 var score;
 var statsFinesse;
 var piecesSet;
@@ -421,6 +422,12 @@ addEventListener('resize', resize, false);
 	* Resets all the settings and starts the game.
 */
 function init(gt) {
+	username = document.getElementById("username").value;
+	if(username == "" || username == undefined)
+	{
+		alert("Please insert your name");
+		return;
+	}
 	showSidePanels();
 	if (gt === 'replay') {
 		watchingReplay = true;
@@ -969,6 +976,9 @@ $(document).ready(function(){
 			var data = JSON.parse(response);
 			var html = "";
 			var rank = 0;
+			html+="<li>";
+			html+="JOUW SCORE";
+			html+="</li>";
 			$.each(data.results, function(i, item){
 				html+="<li>";
 				html+="<div class='bell-with-rank'>"+ (i+1)+ "</div>";
@@ -976,6 +986,9 @@ $(document).ready(function(){
 				html+="<div class='score'>"+item.score+"</div>";
 				html+="</li>";
 			});
+			html+="<li>";
+			html+="<a class='button' onclick='menu(0)'>Done</a>";
+			html+="</li>";
 			$(".row-hall-of-fame").html(html);
 		}
 	});
@@ -984,10 +997,7 @@ $(document).ready(function(){
 		showMainPanel();
 	});
 });
-function showLeaderboard(){
-	hideMainPanel();
-	$('#myModal').modal('show');
-}
+
 function EndGame() {
 	console.log("game End");
 	if(score != 0){

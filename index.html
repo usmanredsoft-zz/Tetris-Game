@@ -2,7 +2,7 @@
 <meta charset=utf-8>
 <title>Tetr.js</title>
 <link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="css/modal.css">
+<!--<link rel="stylesheet" href="css/modal.css">-->
 <canvas id=bg></canvas>
 <!--<video id=bg src=bg.webm loop autoplay></video>-->
 <div id=content>
@@ -41,11 +41,12 @@
 		<p id="msg">
 			
 			<nav class='menu on'>
-				<h1><img src="img/tetr.png" class="h1-img"/></h1>
+				<h1 class="main-title"><img src="img/tetr.png" class="h1-img"/></h1>
 				<ul>
-					<li><a onclick=init(0)>Play Sprint</a></li>
-					<li><a onclick=menu(2)><i class=></i>Instructions</a></li>
-					<li><a onclick=showLeaderboard()>Leaderboard</a></li>
+					<li>Enter your name:</li>
+					<li><input type="text" class="name-input" id="username" /></li>
+					<li><a onclick="init(0)">Play Sprint</a></li>
+					<li><a onclick="menu(2)"><i class=></i>Instructions</a></li>
 				</ul>
 			</nav>
 			
@@ -78,7 +79,7 @@
 				<ul>
 					<li><a onclick=init(gametype)>Retry</a></li>
 					<li><a onclick=init('replay')>Watch Replay</a></li>
-					<li><a onclick=showLeaderboard()>Leaderboard</a></li>
+					<li><a onclick=menu(5)><i class=></i>Leaderboard</a></li>
 					<li><a onclick=menu(0)>Main Menu</a></li>
 				</ul>
 			</nav>
@@ -90,6 +91,12 @@
 					<li><a onclick=menu(0)>Main Menu</a></li>
 				</ul>
 			</nav>
+			
+			<div class=menu id="leaderboard">
+				<ul  class="row-hall-of-fame">
+					<li><a onclick=menu(0)>Main Menu</a></li>
+				</ul>
+			</div>
 		</div>
 		<div id="a-with-c">
 			<div id="c">
@@ -104,21 +111,6 @@
 				<h3>Hold</h3>
 				<canvas id="hold"></canvas>
 			</div>
-		</div>
-	</div>
-	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h4 class="modal-title">JOUW SCORE</h4>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				</div>
-				<div class="modal-body">
-					<ul class="row-hall-of-fame">
-					</ul>
-				</div>
-			</div>
-			
 		</div>
 	</div>
 	

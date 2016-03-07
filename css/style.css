@@ -406,3 +406,58 @@ table{
 	width:30%;
 	margin:7px 1.666666% 5px;
 }
+
+.row-hall-of-fame{
+	padding:0;
+	margin:0;
+	overflow:hidden;
+}
+.row-hall-of-fame li{
+	border:1px solid white;
+	background: rgba(80,80,80,0.45);
+	padding:3px 5px;
+	list-style:none;
+	overflow:hidden;
+}
+.row-hall-of-fame img{display:none;}
+.row-hall-of-fame p{
+margin:0;
+float:left;
+}
+.bell-with-rank{
+background-image:url(../img/ring.png);
+background-repeat:no-repeat;
+background-size:contain;
+background-position: 53%;
+box-sizing:border-box;
+float:left;
+padding: 8px;
+text-align: center;
+width:15%;
+}
+.name{
+box-sizing:border-box;
+float:left;
+padding: 10px;
+text-transform:uppercase;
+width:60%;
+}
+.score{
+border-left:2px solid #5e9b91;
+text-transform:uppercase;
+width:20%;
+float:left;
+padding: 8px;
+box-sizing:border-box;
+padding-left:10px;
+}
+.name-input{
+	color:white;
+	font: 1.15rem 'Lato';
+	padding: 12px 8px;
+    background: transparent;
+    border: 2px solid white;
+}
+.main-title{
+	margin-top:3em;
+}
