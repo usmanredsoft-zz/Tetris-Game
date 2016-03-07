@@ -207,8 +207,10 @@ nav li {
   #stack {
     position: absolute;
     z-index: 2;
-	transform: translateX(10%);
   }
+  #preview{
+	  transform: translateX(10%);
+	 }
   #active {
     position: absolute;
     z-index: 3;
