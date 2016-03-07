@@ -978,7 +978,7 @@ function getLeaderboard(){
 			var data = JSON.parse(response);
 			var html = "";
 			var rank = 0;
-			html+="<li>";
+			html+="<li class='main-li'>";
 			html+="JOUW SCORE";
 			html+="</li>";
 			$.each(data.results, function(i, item){
@@ -1036,5 +1036,5 @@ function EndGame() {
 }
 function sendScore(namev, scorev) {
 	$.ajax({ type:"POST", url:"insertScore.php", data:{name:namev, score:scorev} })
-	.done(function( data ) {console.log("insert response: " + data);}); 
+	.done(function( data ) {console.log("insert response: " + data);getLeaderboard();}); 
 	}
