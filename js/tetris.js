@@ -217,7 +217,7 @@ var settings = {
 	Size: 0,
 	Sound: 0,
 	Volume: 100,
-	Block: 0,
+	Block: 5,
 	Ghost: 0,
 	Grid: 0,
 	Outline: 0
@@ -321,7 +321,8 @@ var flags = {
 	rotLeft: 64,
 	rot180: 128,
 };
-
+var imgObj = new Image();
+	var pattern;
 function resize() {
 	var a = document.getElementById('a');
 	var b = document.getElementById('b');
@@ -343,6 +344,7 @@ function resize() {
 	else if (settings.Size === 3 && screenHeight > 902) cellSize = 45;
 	//STAS CHANGED, INITIALLY WAS (screenHeight / 20)
 	else cellSize = Math.max(~~(screenHeight / 22), 10);
+	console.log(cellSize);
 	
 	var pad = (window.innerHeight - (cellSize * 20 + 2)) / 4 + 'px';
 	content.style.padding = pad + ' 0';
@@ -397,7 +399,12 @@ function resize() {
 	}
 	
 	// Redraw graphics
-	makeSprite();
+	imgObj.onload = function(){
+		pattern = spriteCtx.createPattern(this, "repeat");
+		console.log("loaded");
+		makeSprite();
+		}
+	imgObj.src ="img/can.png";
 	
 	if (settings.Grid === 1)
     bg(bgStackCtx);
@@ -673,11 +680,13 @@ function makeSprite() {
 			spriteCtx.lineTo(x + cellSize / 2, cellSize / 2);
 			spriteCtx.lineTo(x + cellSize, cellSize);
 			spriteCtx.fill();
-			} else if (settings.Block === 1) {
+		}
+		else if (settings.Block === 1) {
 			// Flat
 			spriteCtx.fillStyle = shaded[i][0];
 			spriteCtx.fillRect(x, 0, cellSize, cellSize);
-			} else if (settings.Block === 2) {
+		}
+		else if (settings.Block === 2) {
 			// Glossy
 			var k = Math.max(~~(cellSize * 0.083), 1);
 			
@@ -701,7 +710,8 @@ function makeSprite() {
 			spriteCtx.fillStyle = grad;
 			spriteCtx.fillRect(x + k, k, cellSize - k * 2, cellSize - k * 2);
 			
-			} else if (settings.Block === 3 || settings.Block === 4) {
+		}
+		else if (settings.Block === 3 || settings.Block === 4) {
 			// Arika
 			if (settings.Block === 4) tgm = world;
 			var k = Math.max(~~(cellSize * 0.125), 1);
@@ -728,6 +738,18 @@ function makeSprite() {
 			grad.addColorStop(1, tgm[i][1]);
 			spriteCtx.fillStyle = grad;
 			spriteCtx.fillRect(x + cellSize - k, 0, k, cellSize - k);
+		}
+		else if(settings.Block == 5){
+			// Images
+			//spriteCtx.fillStyle = shaded[i][0];
+			//spriteCtx.fillRect(x, 0, cellSize, cellSize);
+			
+			
+			
+			spriteCtx.fillStyle = pattern;
+			spriteCtx.fillRect(x, 0, cellSize, cellSize);
+			spriteCtx.fill();
+			
 		}
 	}
 }
@@ -903,69 +925,70 @@ function gameLoop() {
 	
 	if (gameState === 0) {
 		// Playing
-	
-	if (!paused) {
-		update();
-	}
-	
-	// TODO improve this with 'dirty' flags.
-	if (piece.x !== lastX ||
-	Math.floor(piece.y) !== lastY ||
-	piece.pos !== lastPos ||
-	piece.dirty) {
-		clear(activeCtx);
-		piece.drawGhost();
-		piece.draw();
-	}
-	lastX = piece.x;
-	lastY = Math.floor(piece.y);
-	lastPos = piece.pos;
-	piece.dirty = false;
-	} else if (gameState === 2) {
-	// Count Down
-	if (frame < 50) {
-		if (msg.innerHTML !== 'READY') msg.innerHTML = 'READY';
-		} else if (frame < 100) {
-		if (msg.innerHTML !== 'GO!') msg.innerHTML = 'GO!';
-		} else {
-		msg.innerHTML = '';
-		gameState = 0;
-		startTime = Date.now();
-		piece.new(preview.next());
-	}
-	// DAS Preload
-	if (lastKeys !== keysDown && !watchingReplay) {
-		replayKeys[frame] = keysDown;
-		} else if (frame in replayKeys) {
-		keysDown = replayKeys[frame];
-	}
-	if (keysDown & flags.moveLeft) {
-		lastKeys = keysDown;
-		piece.shiftDelay = settings.DAS;
-		piece.shiftReleased = false;
-		piece.shiftDir = -1;
-		} else if (keysDown & flags.moveRight) {
-		lastKeys = keysDown;
-		piece.shiftDelay = settings.DAS;
-		piece.shiftReleased = false;
-		piece.shiftDir = 1;
-	}
-	} else if (toGreyRow >= 2){
-	/**
-		* Fade to grey animation played when player loses.
-	*/
-	if (toGreyRow === 21)
-	clear(activeCtx);
-	if (frame % 2) {
-		for (var x = 0; x < 10; x++) {
-			if (stack.grid[x][toGreyRow]) stack.grid[x][toGreyRow] = gameState - 1;
+		
+		if (!paused) {
+			update();
 		}
-		stack.draw();
-		toGreyRow--;
-	}
+		
+		// TODO improve this with 'dirty' flags.
+		if (piece.x !== lastX ||
+		Math.floor(piece.y) !== lastY ||
+		piece.pos !== lastPos ||
+		piece.dirty) {
+			clear(activeCtx);
+			piece.drawGhost();
+			piece.draw();
+		}
+		lastX = piece.x;
+		lastY = Math.floor(piece.y);
+		lastPos = piece.pos;
+		piece.dirty = false;
+		} else if (gameState === 2) {
+		// Count Down
+		if (frame < 50) {
+			if (msg.innerHTML !== 'READY') msg.innerHTML = 'READY';
+			} else if (frame < 100) {
+			if (msg.innerHTML !== 'GO!') msg.innerHTML = 'GO!';
+			} else {
+			msg.innerHTML = '';
+			gameState = 0;
+			startTime = Date.now();
+			piece.new(preview.next());
+		}
+		// DAS Preload
+		if (lastKeys !== keysDown && !watchingReplay) {
+			replayKeys[frame] = keysDown;
+			} else if (frame in replayKeys) {
+			keysDown = replayKeys[frame];
+		}
+		if (keysDown & flags.moveLeft) {
+			lastKeys = keysDown;
+			piece.shiftDelay = settings.DAS;
+			piece.shiftReleased = false;
+			piece.shiftDir = -1;
+			} else if (keysDown & flags.moveRight) {
+			lastKeys = keysDown;
+			piece.shiftDelay = settings.DAS;
+			piece.shiftReleased = false;
+			piece.shiftDir = 1;
+		}
+		} else if (toGreyRow >= 2){
+		/**
+			* Fade to grey animation played when player loses.
+		*/
+		if (toGreyRow === 21)
+		clear(activeCtx);
+		if (frame % 2) {
+			for (var x = 0; x < 10; x++) {
+				if (stack.grid[x][toGreyRow]) stack.grid[x][toGreyRow] = gameState - 1;
+			}
+			stack.draw();
+			toGreyRow--;
+		}
 	}
 }
-$(document).ready(function(){
+
+function getLeaderboard(){
 	$.ajax({
 		url:'game.php',
 		type:'post',
@@ -973,10 +996,11 @@ $(document).ready(function(){
 			action:'getBestPlayers'
 		},
 		success: function(response){
+			console.log("leaderboard: " + response);
 			var data = JSON.parse(response);
 			var html = "";
 			var rank = 0;
-			html+="<li>";
+			html+="<li class='main-li'>";
 			html+="JOUW SCORE";
 			html+="</li>";
 			$.each(data.results, function(i, item){
@@ -989,13 +1013,14 @@ $(document).ready(function(){
 			html+="<li>";
 			html+="<a class='button' onclick='menu(0)'>Done</a>";
 			html+="</li>";
+			console.log("html made: " + html);
+			console.log($(".row-hall-of-fame"));
 			$(".row-hall-of-fame").html(html);
 		}
 	});
-	
-	$(".modal button.close").on("click", function(){
-		showMainPanel();
-	});
+} 
+$(document).ready(function(){
+	getLeaderboard();
 });
 
 function EndGame() {
@@ -1033,5 +1058,5 @@ function EndGame() {
 }
 function sendScore(namev, scorev) {
 	$.ajax({ type:"POST", url:"insertScore.php", data:{name:namev, score:scorev} })
-	.done(function( data ) {console.log("insert response: " + data);}); 
-	}
+	.done(function( data ) {console.log("insert response: " + data);getLeaderboard();}); 
+}
