@@ -209,7 +209,6 @@ nav li {
     z-index: 2;
   }
   #preview{
-	  transform: translateX(10%);
 	 }
   #active {
     position: absolute;

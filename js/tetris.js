@@ -324,8 +324,14 @@ var flags = {
 	rotLeft: 64,
 	rot180: 128,
 };
-var imgObj = new Image();
-	var pattern;
+var spriteImages = ["img/can.png", "img/cangreen.png", "img/canred.png", "img/cangreen.png"];
+var pattern = [];
+var imgObj = [];
+for(var i = 0; i< spriteImages.length; i++){
+	imgObj[i] = new Image();
+}
+
+
 function resize() {
 	var a = document.getElementById('a');
 	var b = document.getElementById('b');
@@ -347,7 +353,9 @@ function resize() {
 	else if (settings.Size === 3 && screenHeight > 902) cellSize = 45;
 	//STAS CHANGED, INITIALLY WAS (screenHeight / 20)
 	else cellSize = Math.max(~~(screenHeight / 22), 10);
-	console.log(cellSize);
+	
+	cellSize = 39;
+	console.log("cell Size is: " + cellSize);
 	
 	var pad = (window.innerHeight - (cellSize * 20 + 2)) / 4 + 'px';
 	content.style.padding = pad + ' 0';
@@ -401,19 +409,36 @@ function resize() {
 		h3[i].style.fontSize = stats.style.fontSize;
 	}
 	
+	var fReady = false;
+	var sReady = false;
+	function checkAllImagesReady(){
+		console.log("ready: " + fReady + sReady);
+		if(fReady && sReady)
+			makeSprite();
+	}
 	// Redraw graphics
-	imgObj.onload = function(){
-		pattern = spriteCtx.createPattern(this, "repeat");
-		console.log("loaded");
-		makeSprite();
-		}
-	imgObj.src ="img/can.png";
+	
+	imgObj[0].onload = function(){
+		fReady = true;
+		pattern[0] = spriteCtx.createPattern(this, "repeat");
+		console.log("loaded 0");
+		checkAllImagesReady();
+	}
+	imgObj[1].onload = function(){
+		sReady = true;
+		pattern[1] = spriteCtx.createPattern(this, "repeat");
+		console.log("loaded 1");
+		checkAllImagesReady();
+	}
+	for(var i = 0; i< spriteImages.length; i++){
+		imgObj[i].src = spriteImages[i];
+	}
 	
 	if (settings.Grid === 1)
     bg(bgStackCtx);
 	
 	if (gameState === 0) {
-		piece.drawGhost();
+		//piece.drawGhost();
 		piece.draw();
 		stack.draw();
 		preview.draw();
@@ -747,9 +772,8 @@ function makeSprite() {
 			//spriteCtx.fillStyle = shaded[i][0];
 			//spriteCtx.fillRect(x, 0, cellSize, cellSize);
 			
-			
-			
-			spriteCtx.fillStyle = pattern;
+			console.log("filling rect");
+			spriteCtx.fillStyle = pattern[i%2];
 			spriteCtx.fillRect(x, 0, cellSize, cellSize);
 			spriteCtx.fill();
 			
@@ -939,6 +963,7 @@ function gameLoop() {
 		piece.pos !== lastPos ||
 		piece.dirty) {
 			clear(activeCtx);
+			//THIS DRAW GHOST IS BAD drawGhost
 			piece.drawGhost();
 			piece.draw();
 		}
@@ -999,7 +1024,7 @@ function getLeaderboard(){
 			action:'getBestPlayers'
 		},
 		success: function(response){
-			console.log("leaderboard: " + response);
+			//console.log("leaderboard: " + response);
 			var data = JSON.parse(response);
 			var html = "";
 			var rank = 0;
@@ -1016,8 +1041,8 @@ function getLeaderboard(){
 			html+="<li>";
 			html+="<a class='button' onclick='menu(0)'>Done</a>";
 			html+="</li>";
-			console.log("html made: " + html);
-			console.log($(".row-hall-of-fame"));
+			//console.log("html made: " + html);
+			//console.log($(".row-hall-of-fame"));
 			$(".row-hall-of-fame").html(html);
 		}
 	});
