@@ -324,12 +324,14 @@ var flags = {
 	rotLeft: 64,
 	rot180: 128,
 };
-var spriteImages = ["img/can.png", "img/cangreen.png", "img/canred.png", "img/cangreen.png"];
+var spriteImages = ["img/block0.png", "img/block1.png", "img/block2.png", "img/block3.png", "img/block4.png", "img/block5.png", "img/block6.png", "img/block7.png"];
 var pattern = [];
 var imgObj = [];
+var imageReady = [];
 for(var i = 0; i< spriteImages.length; i++){
 	imgObj[i] = new Image();
 	imgObj[i].src = spriteImages[i];
+	imageReady[i] = false;
 }
 
 
@@ -410,25 +412,70 @@ function resize() {
 		h3[i].style.fontSize = stats.style.fontSize;
 	}
 	
-	var fReady = false;
-	var sReady = false;
 	function checkAllImagesReady(){
-		console.log("ready: " + fReady + sReady);
-		if(fReady && sReady)
-			makeSprite();
+		for(var i = 0; i< spriteImages.length; i++){
+			if(imageReady[i] == false){
+				console.log(i + "is not ready");
+				return;
+			}
+		}
+		console.log("all images are ready, making sprite");
+		makeSprite();
 	}
 	// Redraw graphics
 	
 	imgObj[0].onload = function(){
-		fReady = true;
+		imageReady[0] = true;
 		pattern[0] = spriteCtx.createPattern(this, "repeat");
 		console.log("loaded 0");
 		checkAllImagesReady();
 	}
 	imgObj[1].onload = function(){
-		sReady = true;
+		imageReady[1] = true;
 		pattern[1] = spriteCtx.createPattern(this, "repeat");
 		console.log("loaded 1");
+		checkAllImagesReady();
+	}
+	imgObj[2].onload = function(){
+		imageReady[2] = true;
+		pattern[2] = spriteCtx.createPattern(this, "repeat");
+		console.log("loaded 2");
+		checkAllImagesReady();
+	}
+	imgObj[3].onload = function(){
+		imageReady[3] = true;
+		pattern[3] = spriteCtx.createPattern(this, "repeat");
+		console.log("loaded 3");
+		checkAllImagesReady();
+	}
+	imgObj[4].onload = function(){
+		imageReady[4] = true;
+		pattern[4] = spriteCtx.createPattern(this, "repeat");
+		console.log("loaded 4");
+		checkAllImagesReady();
+	}
+	imgObj[5].onload = function(){
+		imageReady[5] = true;
+		pattern[5] = spriteCtx.createPattern(this, "repeat");
+		console.log("loaded 5");
+		checkAllImagesReady();
+	}
+	imgObj[5].onload = function(){
+		imageReady[5] = true;
+		pattern[5] = spriteCtx.createPattern(this, "repeat");
+		console.log("loaded 5");
+		checkAllImagesReady();
+	}
+	imgObj[6].onload = function(){
+		imageReady[6] = true;
+		pattern[6] = spriteCtx.createPattern(this, "repeat");
+		console.log("loaded 6");
+		checkAllImagesReady();
+	}
+	imgObj[7].onload = function(){
+		imageReady[7] = true;
+		pattern[7] = spriteCtx.createPattern(this, "repeat");
+		console.log("loaded 7");
 		checkAllImagesReady();
 	}
 	
@@ -598,9 +645,9 @@ var rng = new (function() {
 */
 function statistics() {
 	/*var time = Date.now() - startTime - pauseTime;
-	var seconds = (time / 1000 % 60).toFixed(2);
-	var minutes = ~~(time / 60000);
-	statsTime.innerHTML = (minutes < 10 ? '0' : '') + minutes +
+		var seconds = (time / 1000 % 60).toFixed(2);
+		var minutes = ~~(time / 60000);
+		statsTime.innerHTML = (minutes < 10 ? '0' : '') + minutes +
 	(seconds < 10 ? ':0' : ':') + seconds;*/
 }
 
@@ -770,8 +817,8 @@ function makeSprite() {
 			//spriteCtx.fillStyle = shaded[i][0];
 			//spriteCtx.fillRect(x, 0, cellSize, cellSize);
 			
-			console.log("filling rect");
-			spriteCtx.fillStyle = pattern[i%2];
+			console.log("filling rect" + x + " " + spriteCtx);
+			spriteCtx.fillStyle = pattern[i];
 			spriteCtx.fillRect(x, 0, cellSize, cellSize);
 			spriteCtx.fill();
 			
