@@ -78,7 +78,7 @@ Stack.prototype.addPiece = function(tetro) {
   // TODO Might not need this (same for in init)
   column = 0;
 
-  statsPiece.innerHTML = piecesSet;
+  //statsPiece.innerHTML = piecesSet;
 
   if (gametype !== 3){
 	if( parseInt(lines/linesPerLevel + 1) > level){

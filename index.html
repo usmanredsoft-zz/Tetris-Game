@@ -1,5 +1,5 @@
 <!doctype html>
-<meta charset=utf-8>
+<meta charset="utf-8">
 <title>Tetr.js</title>
 <link rel="stylesheet" href="css/style.css">
 <!--<link rel="stylesheet" href="css/modal.css">-->
@@ -15,22 +15,36 @@
 			<li><a onclick=replay()>Play/Pause</a></li>
 			<li><a onclick=replay(1)>next</a></li>
 		</ul>
-		
-		<table id="stats">
+		<div id="a-with-c">
+			<div id="c">
+				<div id="c1">
+					<h3>Next</h3>
+					<canvas id=preview></canvas>
+				</div>
+				<div id="c2">
+				</div>
+			</div>
+			<table id="stats">
 			<tr><td id=line>45</td><th>Line</th></tr>
 			<tr><td id=level>0</td><th>Level</th></tr>
 			<tr><td id=score>0</td><th>Score</th></tr>
 		</table>
-		<table id="stats2">
+			<div id="a">
+				<h3>Hold</h3>
+				<canvas id="hold"></canvas>
+			</div>
+		</div>
+		<!--<table id="stats2">
 			<tr><td id=piece>0</td><th>Piece</th></tr>
 			<tr><th id=time>00:00.00</th></tr>
-		</table>
+		</table>-->
 		<div class="arrow-container">
 			<img src="img/arrowTop.png" class="img-first-row" onclick="arrowTopClick()"/>
 			<img src="img/arrowLeft.png" class="img-down-row" onclick="arrowLeftClick()"/>
 			<img src="img/arrowBottom.png" class="img-down-row" onclick="arrowDownClick()"/>
 			<img src="img/arrowRight.png" class="img-down-row" onclick="arrowRightClick()"/>
 		</div>
+		
 	</div>
 	
 	<div id="b">
@@ -98,20 +112,6 @@
 				</ul>
 			</div>
 		</div>
-		<div id="a-with-c">
-			<div id="c">
-				<div id="c1">
-					<h3>Next</h3>
-					<canvas id=preview></canvas>
-				</div>
-				<div id="c2">
-				</div>
-			</div>
-			<div id="a">
-				<h3>Hold</h3>
-				<canvas id="hold"></canvas>
-			</div>
-		</div>
 	</div>
 	
 	<canvas id="sprite"></canvas>
@@ -162,3 +162,13 @@
 			setTimeout(function(){console.log("arrowRightClick");stopLoop();keysDown ^= flags.moveDown;}, 150);
 		}
 	</script>							
+	<script>
+		var isMobile = { 
+			Android: function() { return navigator.userAgent.match(/Android/i); }, 
+			BlackBerry: function() { return navigator.userAgent.match(/BlackBerry/i); }, 
+			iOS: function() { return navigator.userAgent.match(/iPhone|iPad|iPod/i); }, 
+			Opera: function() { return navigator.userAgent.match(/Opera Mini/i); }, 
+			Windows: function() { return navigator.userAgent.match(/IEMobile/i); }, 
+		any: function() { return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows()); } };
+		console.log(isMobile);
+	</script>	

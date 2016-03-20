@@ -22,11 +22,11 @@ var column;
 */
 var msg = document.getElementById('msg');
 var stats = document.getElementById('stats');
-var stats2 = document.getElementById('stats2');
-var statsTime = document.getElementById('time');
+//var stats2 = document.getElementById('stats2');
+//var statsTime = document.getElementById('time');
 var statsLines = document.getElementById('line');
 var statsLevel = document.getElementById('level');
-var statsPiece = document.getElementById('piece');
+//var statsPiece = document.getElementById('piece');
 var statsScore = document.getElementById('score');
 var h3 = document.getElementsByTagName('h3');
 var set = document.getElementById('settings');
@@ -329,6 +329,7 @@ var pattern = [];
 var imgObj = [];
 for(var i = 0; i< spriteImages.length; i++){
 	imgObj[i] = new Image();
+	imgObj[i].src = spriteImages[i];
 }
 
 
@@ -354,7 +355,7 @@ function resize() {
 	//STAS CHANGED, INITIALLY WAS (screenHeight / 20)
 	else cellSize = Math.max(~~(screenHeight / 22), 10);
 	
-	cellSize = 39;
+	cellSize = 45;
 	console.log("cell Size is: " + cellSize);
 	
 	var pad = (window.innerHeight - (cellSize * 20 + 2)) / 4 + 'px';
@@ -368,13 +369,13 @@ function resize() {
 	stackCanvas.width = activeCanvas.width = bgStackCanvas.width = cellSize * 10;
 	stackCanvas.height = activeCanvas.height = bgStackCanvas.height = cellSize * 20;
 	b.style.width = stackCanvas.width + 'px';
-	aWithC.style.width = stackCanvas.width*0.5 + 'px';
+	//aWithC.style.width = stackCanvas.width*0.5 + 'px';
 	d.style.width = stackCanvas.width*0.5 + 'px';
 	
 	
 	b.style.height = stackCanvas.height + 'px';
 	stats.style.height = (stackCanvas.height*0.6 -10)+"px";
-	stats2.style.height = stackCanvas.height*0.2+"px";
+	//stats2.style.height = stackCanvas.height*0.2+"px";
 	document.getElementsByClassName("arrow-container")[0].style.height = (stackCanvas.height*0.2 - 10) +"px";
 	var cHeight = stackCanvas.height*0.78;
 	c.style.height = cHeight + "px";
@@ -430,15 +431,12 @@ function resize() {
 		console.log("loaded 1");
 		checkAllImagesReady();
 	}
-	for(var i = 0; i< spriteImages.length; i++){
-		imgObj[i].src = spriteImages[i];
-	}
 	
 	if (settings.Grid === 1)
     bg(bgStackCtx);
 	
 	if (gameState === 0) {
-		//piece.drawGhost();
+		piece.drawGhost();
 		piece.draw();
 		stack.draw();
 		preview.draw();
@@ -499,7 +497,7 @@ function init(gt) {
 	startTime = Date.now();
 	
 	preview.init()
-	//preview.draw();
+	preview.draw();
 	
 	statsFinesse = 0;
 	lines = 0;
@@ -509,7 +507,7 @@ function init(gt) {
 	piecesSet = 0;
 	
 	statsLines.innerHTML = lineLimit - lines;
-	statsPiece.innerHTML = piecesSet;
+	//statsPiece.innerHTML = piecesSet;
 	//console.log('initial set, should be 1 time only');
 	level = parseInt(lines/linesPerLevel + 1);
 	statsLevel.innerHTML = level;
@@ -599,11 +597,11 @@ var rng = new (function() {
 	* Draws the stats next to the tetrion.
 */
 function statistics() {
-	var time = Date.now() - startTime - pauseTime;
+	/*var time = Date.now() - startTime - pauseTime;
 	var seconds = (time / 1000 % 60).toFixed(2);
 	var minutes = ~~(time / 60000);
 	statsTime.innerHTML = (minutes < 10 ? '0' : '') + minutes +
-	(seconds < 10 ? ':0' : ':') + seconds;
+	(seconds < 10 ? ':0' : ':') + seconds;*/
 }
 
 // ========================== View ============================================

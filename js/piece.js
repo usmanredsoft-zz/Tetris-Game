@@ -266,15 +266,16 @@ Piece.prototype.update = function() {
 	}
 }
 Piece.prototype.draw = function() {
-	console.log("DRAW piece with tetro: " + this.tetro);
+	//console.log("DRAW piece with tetro: " + this.tetro);
 	draw(this.tetro, this.x, this.y, activeCtx);
 }
 Piece.prototype.drawGhost = function() {
-	console.log("DRAW GHOST");
 	if (!settings.Ghost && !landed) {
+		console.log("DRAW GHOST if");
 		draw(this.tetro, this.x, this.y + this.getDrop(22), activeCtx, 0);
 	}
 	else if (settings.Ghost === 1 && !landed) {
+		console.log("DRAW GHOST else if");
 		activeCtx.globalAlpha = 0.3;
 		draw(this.tetro, this.x, this.y + this.getDrop(22), activeCtx);
 		activeCtx.globalAlpha = 1;

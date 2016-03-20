@@ -161,12 +161,13 @@ nav li {
   float: left;
   margin: 10px 0 0;
   height:25%;
-  width:100%;
+  width:98%;
+  margin-bottom:10px;
 }
 #a-with-c{
 	float:left;
-	margin-left:5px;
 	height:100%;
+	width:94%;
 }
 #b {
   border: 1px solid #fff;
@@ -195,9 +196,9 @@ nav li {
 }
   #bgStack {
     background: rgba(0,0,0,0.4);
-    background-image: url("../img/logo.png");
+    background-image: url("../img/background.jpg");
     background-position: 0 45%;
-    background-size: contain;
+    background-size: cover;
     background-repeat: no-repeat;
     position: absolute;
     z-index: 2;
@@ -234,7 +235,8 @@ nav li {
 /* Stats */
 #stats , #stats2{
   display: block;
-  margin-right:15px;
+  margin-right:0;
+  margin-top:10px;
 }
 #stats tbody,#stats2 tbody{
   display: block;
@@ -387,7 +389,7 @@ table{
 	border:2px solid yellow;
 }
 .arrow-container{
-	border:1px solid yellow;
+	border:2px solid yellow;
 	box-sizing:border-box;
 	padding:5px;
 	margin-top:10px;
