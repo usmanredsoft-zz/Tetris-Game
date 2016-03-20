@@ -25,10 +25,10 @@
 				</div>
 			</div>
 			<table id="stats">
-			<tr><td id=line>45</td><th>Line</th></tr>
-			<tr><td id=level>0</td><th>Level</th></tr>
-			<tr><td id=score>0</td><th>Score</th></tr>
-		</table>
+				<tr><td id=line>45</td><th>Line</th></tr>
+				<tr><td id=level>0</td><th>Level</th></tr>
+				<tr><td id=score>0</td><th>Score</th></tr>
+			</table>
 			<div id="a">
 				<h3>Hold</h3>
 				<canvas id="hold"></canvas>
@@ -132,6 +132,9 @@
 		function showMainPanel(){
 			document.getElementById("b").style.visibility = "visible";
 		}
+		function hideArrowPanel(){
+			document.getElementsByClassName("arrow-container")[0].style.display = "none";
+		}
 		hideSidePanels();
 		
 	</script>
@@ -142,6 +145,7 @@
 	<script src="js/preview.js"></script>
 	<script src="js/menu.js"></script>
 	<script src="js/bg.js"></script>
+	<script src="js/detect-mobile.js"></script>
 	<script>_gaq=[['_setAccount','UA-30472693-1'],['_trackPageview']];(function(d){var g=d.createElement('script'),s=d.scripts[0];g.src='//www.google-analytics.com/ga.js';s.parentNode.insertBefore(g,s)})(document)</script>
 	<script>
 		function arrowTopClick(){
@@ -161,14 +165,9 @@
 			startLoop();
 			setTimeout(function(){console.log("arrowRightClick");stopLoop();keysDown ^= flags.moveDown;}, 150);
 		}
-	</script>							
-	<script>
-		var isMobile = { 
-			Android: function() { return navigator.userAgent.match(/Android/i); }, 
-			BlackBerry: function() { return navigator.userAgent.match(/BlackBerry/i); }, 
-			iOS: function() { return navigator.userAgent.match(/iPhone|iPad|iPod/i); }, 
-			Opera: function() { return navigator.userAgent.match(/Opera Mini/i); }, 
-			Windows: function() { return navigator.userAgent.match(/IEMobile/i); }, 
-		any: function() { return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows()); } };
-		console.log(isMobile);
+	</script>
+	<script>		
+		if(!jQuery.browser.mobile){
+			hideArrowPanel();
+		}
 	</script>	
