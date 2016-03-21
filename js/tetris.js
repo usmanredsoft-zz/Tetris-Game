@@ -340,7 +340,7 @@ function resize() {
 	var b = document.getElementById('b');
 	var c = document.getElementById('c');
 	var c1 = document.getElementById('c1');
-	var c2 = document.getElementById('c2');
+	//var c2 = document.getElementById('c2');
 	var aWithC = document.getElementById('a-with-c');
 	var content = document.getElementById('content');
 	
@@ -379,11 +379,11 @@ function resize() {
 	stats.style.height = (stackCanvas.height*0.6 -10)+"px";
 	//stats2.style.height = stackCanvas.height*0.2+"px";
 	document.getElementsByClassName("arrow-container")[0].style.height = (stackCanvas.height*0.2 - 10) +"px";
-	var cHeight = stackCanvas.height*0.78;
+	var cHeight = stackCanvas.height*0.27;
 	c.style.height = cHeight + "px";
 	
-	c1.style.height = (cHeight*0.35) +"px";
-	c2.style.height = (cHeight*0.65 - 10)+"px";
+	c1.style.height = (cHeight) +"px";
+	//c2.style.height = (cHeight*0.65 - 10)+"px";
 	
 	a.style.height = stackCanvas.height*0.22 - 10 +"px";
 	
