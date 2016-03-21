@@ -30,6 +30,7 @@ var statsLevel = document.getElementById('level');
 var statsScore = document.getElementById('score');
 var h3 = document.getElementsByTagName('h3');
 var set = document.getElementById('settings');
+var audio = document.getElementById('line-clear-audio');
 
 // Get canvases and contexts
 var holdCanvas = document.getElementById('hold');
@@ -376,7 +377,7 @@ function resize() {
 	
 	
 	b.style.height = stackCanvas.height + 'px';
-	stats.style.height = (stackCanvas.height*0.6 -10)+"px";
+	stats.style.height = (stackCanvas.height*0.5 -10)+"px";
 	//stats2.style.height = stackCanvas.height*0.2+"px";
 	document.getElementsByClassName("arrow-container")[0].style.height = (stackCanvas.height*0.2 - 10) +"px";
 	var cHeight = stackCanvas.height*0.27;
@@ -415,7 +416,7 @@ function resize() {
 	function checkAllImagesReady(){
 		for(var i = 0; i< spriteImages.length; i++){
 			if(imageReady[i] == false){
-				console.log(i + "is not ready");
+				//console.log(i + "is not ready");
 				return;
 			}
 		}
@@ -427,55 +428,55 @@ function resize() {
 	imgObj[0].onload = function(){
 		imageReady[0] = true;
 		pattern[0] = spriteCtx.createPattern(this, "repeat");
-		console.log("loaded 0");
+		//console.log("loaded 0");
 		checkAllImagesReady();
 	}
 	imgObj[1].onload = function(){
 		imageReady[1] = true;
 		pattern[1] = spriteCtx.createPattern(this, "repeat");
-		console.log("loaded 1");
+		//console.log("loaded 1");
 		checkAllImagesReady();
 	}
 	imgObj[2].onload = function(){
 		imageReady[2] = true;
 		pattern[2] = spriteCtx.createPattern(this, "repeat");
-		console.log("loaded 2");
+		//console.log("loaded 2");
 		checkAllImagesReady();
 	}
 	imgObj[3].onload = function(){
 		imageReady[3] = true;
 		pattern[3] = spriteCtx.createPattern(this, "repeat");
-		console.log("loaded 3");
+		//console.log("loaded 3");
 		checkAllImagesReady();
 	}
 	imgObj[4].onload = function(){
 		imageReady[4] = true;
 		pattern[4] = spriteCtx.createPattern(this, "repeat");
-		console.log("loaded 4");
+		//console.log("loaded 4");
 		checkAllImagesReady();
 	}
 	imgObj[5].onload = function(){
 		imageReady[5] = true;
 		pattern[5] = spriteCtx.createPattern(this, "repeat");
-		console.log("loaded 5");
+		//console.log("loaded 5");
 		checkAllImagesReady();
 	}
 	imgObj[5].onload = function(){
 		imageReady[5] = true;
 		pattern[5] = spriteCtx.createPattern(this, "repeat");
-		console.log("loaded 5");
+		//console.log("loaded 5");
 		checkAllImagesReady();
 	}
 	imgObj[6].onload = function(){
 		imageReady[6] = true;
 		pattern[6] = spriteCtx.createPattern(this, "repeat");
-		console.log("loaded 6");
+		//console.log("loaded 6");
 		checkAllImagesReady();
 	}
 	imgObj[7].onload = function(){
 		imageReady[7] = true;
 		pattern[7] = spriteCtx.createPattern(this, "repeat");
-		console.log("loaded 7");
+		//console.log("loaded 7");
 		checkAllImagesReady();
 	}
 	
@@ -836,11 +837,18 @@ function clear(ctx) {
 /**
 	* Draws a 2d array of minos.
 */
-function draw(tetro, cx, cy, ctx, color) {
-	for (var x = 0, len = tetro.length; x < len; x++) {
-		for (var y = 0, wid = tetro[x].length; y < wid; y++) {
-			if (tetro[x][y]) drawCell(x + cx, y + cy, color !== void 0 ? color : tetro[x][y], ctx);
+function draw(tetro, cx, cy, ctx, color, pieceNum) {
+	if(arguments.length < 6){	
+		for (var x = 0, len = tetro.length; x < len; x++) {
+			for (var y = 0, wid = tetro[x].length; y < wid; y++) {
+				var myColor = color !== void 0 ? color : tetro[x][y];
+				console.log("draw from tetris " + color + myColor + tetro[x][y]);
+				if (tetro[x][y]) drawCell(x + cx, y + cy, myColor, ctx);
+			}
 		}
+	}
+	else{
+		console.log("piece num");
 	}
 }
 
@@ -1046,6 +1054,7 @@ function gameLoop() {
 			piece.shiftDir = 1;
 		}
 		} else if (toGreyRow >= 2){
+		console.log("toGreyRow from tetris.js");
 		/**
 			* Fade to grey animation played when player loses.
 		*/

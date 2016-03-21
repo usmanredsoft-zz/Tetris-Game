@@ -60,6 +60,7 @@ Stack.prototype.addPiece = function(tetro) {
     if (count === 10) {2
       lines++; // NOTE stats
 	  score += 100;
+	  audio.play();
       if (gametype === 3) {
         if (digLines.indexOf(row) !== -1) {
           digLines.splice(digLines.indexOf(row), 1);

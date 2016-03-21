@@ -45,7 +45,7 @@ Piece.prototype.new = function(index) {
 	// Check for blockout.
 	
 	if (!this.moveValid(0, 0, this.tetro)) {
-		gameState = 9;
+		//gameState = 9;
 		msg.innerHTML = 'GAME OVER!';
 		sendScore(username, score);
 		hideSidePanels();
@@ -266,16 +266,13 @@ Piece.prototype.update = function() {
 	}
 }
 Piece.prototype.draw = function() {
-	//console.log("DRAW piece with tetro: " + this.tetro);
 	draw(this.tetro, this.x, this.y, activeCtx);
 }
 Piece.prototype.drawGhost = function() {
 	if (!settings.Ghost && !landed) {
-		console.log("DRAW GHOST if");
 		draw(this.tetro, this.x, this.y + this.getDrop(22), activeCtx, 0);
 	}
 	else if (settings.Ghost === 1 && !landed) {
-		console.log("DRAW GHOST else if");
 		activeCtx.globalAlpha = 0.3;
 		draw(this.tetro, this.x, this.y + this.getDrop(22), activeCtx);
 		activeCtx.globalAlpha = 1;
