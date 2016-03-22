@@ -57,7 +57,8 @@ th {
 td {
 	padding: 0;
 }
-
+.inline-block{display:inline-block;}
+.full-height{height:100%;}
 /* Header */
 h1 {
 	color: #fff;
@@ -396,12 +397,24 @@ table{
 .arrow-container{
 	border:2px solid yellow;
 	box-sizing:border-box;
-	padding:5px;
+	padding:2px;
 	margin-top:10px;
 	overflow:hidden;
 	text-align:center;
-	width:94%;
+	width:100%;
+	position:absolute;
+	height:100px;
+	bottom:0;
+	left:0;
+	z-index:50;
 }
+.arrow-container img{
+	float:left;
+	height:100%;
+	max-height:92px;
+	margin:0 3px;
+}
+/*
 .img-first-row{
 	display:block;
 	width:30%;
@@ -412,7 +425,7 @@ table{
 	width:30%;
 	margin:7px 1.666666% 5px;
 }
-
+*/
 .row-hall-of-fame{
 	padding:0;
 	margin:0;

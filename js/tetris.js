@@ -362,7 +362,8 @@ function resize() {
 	console.log("cell Size is: " + cellSize);
 	
 	var pad = (window.innerHeight - (cellSize * 20 + 2)) / 4 + 'px';
-	content.style.padding = pad + ' 0';
+	var contentPad = (window.innerHeight - (cellSize * 20 + 2)) / 8 + 'px + 0px';
+	content.style.padding = contentPad;
 	stats.style.bottom = pad;
 	
 	// Size elements
@@ -373,13 +374,20 @@ function resize() {
 	stackCanvas.height = activeCanvas.height = bgStackCanvas.height = cellSize * 20;
 	b.style.width = stackCanvas.width + 'px';
 	//aWithC.style.width = stackCanvas.width*0.5 + 'px';
-	d.style.width = stackCanvas.width*0.5 + 'px';
+	d.style.width = stackCanvas.width*0.75 + 'px';
 	
+	if(jQuery.browser.mobile){
+		b.style.height = stackCanvas.height + 100 + 'px';
+		
+	}
+	else{
+		b.style.height = stackCanvas.height + 'px';
+		hideArrowPanel();
+	}
 	
-	b.style.height = stackCanvas.height + 'px';
 	stats.style.height = (stackCanvas.height*0.5 -10)+"px";
 	//stats2.style.height = stackCanvas.height*0.2+"px";
-	document.getElementsByClassName("arrow-container")[0].style.height = (stackCanvas.height*0.2 - 25) +"px";
+	//document.getElementsByClassName("arrow-container")[0].style.height = (stackCanvas.height*0.2 - 25) +"px";
 	var cHeight = stackCanvas.height*0.27;
 	c.style.height = cHeight*0.8 + "px";
 	
@@ -423,428 +431,428 @@ function resize() {
 		//console.log("all images are ready, making sprite");
 		makeSprite();
 	}
-	// Redraw graphics
-	
-	imgObj[0].onload = function(){
-		imageReady[0] = true;
-		pattern[0] = spriteCtx.createPattern(this, "repeat");
-		//console.log("loaded 0");
-		checkAllImagesReady();
-	}
-	imgObj[1].onload = function(){
-		imageReady[1] = true;
-		pattern[1] = spriteCtx.createPattern(this, "repeat");
-		//console.log("loaded 1");
-		checkAllImagesReady();
-	}
-	imgObj[2].onload = function(){
-		imageReady[2] = true;
-		pattern[2] = spriteCtx.createPattern(this, "repeat");
-		//console.log("loaded 2");
-		checkAllImagesReady();
-	}
-	imgObj[3].onload = function(){
-		imageReady[3] = true;
-		pattern[3] = spriteCtx.createPattern(this, "repeat");
-		//console.log("loaded 3");
-		checkAllImagesReady();
-	}
-	imgObj[4].onload = function(){
-		imageReady[4] = true;
-		pattern[4] = spriteCtx.createPattern(this, "repeat");
-		//console.log("loaded 4");
-		checkAllImagesReady();
-	}
-	imgObj[5].onload = function(){
-		imageReady[5] = true;
-		pattern[5] = spriteCtx.createPattern(this, "repeat");
-		//console.log("loaded 5");
-		checkAllImagesReady();
-	}
-	imgObj[5].onload = function(){
-		imageReady[5] = true;
-		pattern[5] = spriteCtx.createPattern(this, "repeat");
-		//console.log("loaded 5");
-		checkAllImagesReady();
-	}
-	imgObj[6].onload = function(){
-		imageReady[6] = true;
-		pattern[6] = spriteCtx.createPattern(this, "repeat");
-		//console.log("loaded 6");
-		checkAllImagesReady();
-	}
-	imgObj[7].onload = function(){
-		imageReady[7] = true;
-		pattern[7] = spriteCtx.createPattern(this, "repeat");
-		//console.log("loaded 7");
-		checkAllImagesReady();
-	}
-	
-	if (settings.Grid === 1)
-    bg(bgStackCtx);
-	
-	if (gameState === 0) {
-		piece.drawGhost();
-		piece.draw();
-		stack.draw();
-		preview.draw();
-		if (hold.piece) {
-			hold.draw();
-		}
-	}
+// Redraw graphics
+
+imgObj[0].onload = function(){
+imageReady[0] = true;
+pattern[0] = spriteCtx.createPattern(this, "repeat");
+//console.log("loaded 0");
+checkAllImagesReady();
+}
+imgObj[1].onload = function(){
+imageReady[1] = true;
+pattern[1] = spriteCtx.createPattern(this, "repeat");
+//console.log("loaded 1");
+checkAllImagesReady();
+}
+imgObj[2].onload = function(){
+imageReady[2] = true;
+pattern[2] = spriteCtx.createPattern(this, "repeat");
+//console.log("loaded 2");
+checkAllImagesReady();
+}
+imgObj[3].onload = function(){
+imageReady[3] = true;
+pattern[3] = spriteCtx.createPattern(this, "repeat");
+//console.log("loaded 3");
+checkAllImagesReady();
+}
+imgObj[4].onload = function(){
+imageReady[4] = true;
+pattern[4] = spriteCtx.createPattern(this, "repeat");
+//console.log("loaded 4");
+checkAllImagesReady();
+}
+imgObj[5].onload = function(){
+imageReady[5] = true;
+pattern[5] = spriteCtx.createPattern(this, "repeat");
+//console.log("loaded 5");
+checkAllImagesReady();
+}
+imgObj[5].onload = function(){
+imageReady[5] = true;
+pattern[5] = spriteCtx.createPattern(this, "repeat");
+//console.log("loaded 5");
+checkAllImagesReady();
+}
+imgObj[6].onload = function(){
+imageReady[6] = true;
+pattern[6] = spriteCtx.createPattern(this, "repeat");
+//console.log("loaded 6");
+checkAllImagesReady();
+}
+imgObj[7].onload = function(){
+imageReady[7] = true;
+pattern[7] = spriteCtx.createPattern(this, "repeat");
+//console.log("loaded 7");
+checkAllImagesReady();
+}
+
+if (settings.Grid === 1)
+bg(bgStackCtx);
+
+if (gameState === 0) {
+piece.drawGhost();
+piece.draw();
+stack.draw();
+preview.draw();
+if (hold.piece) {
+hold.draw();
+}
+}
 }
 addEventListener('resize', resize, false);
 
 /**
-	* ========================== Model ===========================================
+* ========================== Model ===========================================
 */
 
 /**
-	* Resets all the settings and starts the game.
+* Resets all the settings and starts the game.
 */
 function init(gt) {
-	username = document.getElementById("username").value;
-	if(username == "" || username == undefined)
-	{
-		alert("Please insert your name");
-		return;
-	}
-	showSidePanels();
-	if (gt === 'replay') {
-		watchingReplay = true;
-		} else {
-		watchingReplay = false;
-		replayKeys = {};
-		// TODO Make new seed and rng method.
-		replayKeys.seed = ~~(Math.random() * 2147483645) + 1;
-		gametype = gt;
-	}
-	
-	lineLimit = 45;
-	
-	//Reset
-	column = 0;
-	keysDown = 0;
-	lastKeys = 0;
-	released = 255;
-	//TODO Check if needed.
-	piece.shiftDir = 0;
-	piece.shiftReleased = true;
-	
-	startPauseTime = 0;
-	pauseTime = 0;
-	paused = false;
-	
-	rng.seed = replayKeys.seed;
-	toGreyRow = 21;
-	frame = 0;
-	lastPos = 'reset';
-	stack.new(10, 22);
-	hold.piece = void 0;
-	if (settings.Gravity === 0) gravity = gravityUnit * 4;
-	startTime = Date.now();
-	
-	preview.init()
-	preview.draw();
-	
-	statsFinesse = 0;
-	lines = 0;
-	level = 0;
-	score = 0;
-	linesPerLevel = lineLimit/15;
-	piecesSet = 0;
-	
-	statsLines.innerHTML = lineLimit - lines;
-	//statsPiece.innerHTML = piecesSet;
-	//console.log('initial set, should be 1 time only');
-	level = parseInt(lines/linesPerLevel + 1);
-	statsLevel.innerHTML = level;
-	
-	statistics();
-	clear(stackCtx);
-	clear(activeCtx);
-	clear(holdCtx);
-	
-	
-	menu();
-	
-	// Only start a loop if one is not running already.
-	if (gameState === 3) {
-		gameState = 2;
-		gameLoop();
-		} else {
-		gameState = 2;
-	}
+username = document.getElementById("username").value;
+if(username == "" || username == undefined)
+{
+alert("Please insert your name");
+return;
+}
+showSidePanels();
+if (gt === 'replay') {
+watchingReplay = true;
+} else {
+watchingReplay = false;
+replayKeys = {};
+// TODO Make new seed and rng method.
+replayKeys.seed = ~~(Math.random() * 2147483645) + 1;
+gametype = gt;
+}
+
+lineLimit = 45;
+
+//Reset
+column = 0;
+keysDown = 0;
+lastKeys = 0;
+released = 255;
+//TODO Check if needed.
+piece.shiftDir = 0;
+piece.shiftReleased = true;
+
+startPauseTime = 0;
+pauseTime = 0;
+paused = false;
+
+rng.seed = replayKeys.seed;
+toGreyRow = 21;
+frame = 0;
+lastPos = 'reset';
+stack.new(10, 22);
+hold.piece = void 0;
+if (settings.Gravity === 0) gravity = gravityUnit * 4;
+startTime = Date.now();
+
+preview.init()
+preview.draw();
+
+statsFinesse = 0;
+lines = 0;
+level = 0;
+score = 0;
+linesPerLevel = lineLimit/15;
+piecesSet = 0;
+
+statsLines.innerHTML = lineLimit - lines;
+//statsPiece.innerHTML = piecesSet;
+//console.log('initial set, should be 1 time only');
+level = parseInt(lines/linesPerLevel + 1);
+statsLevel.innerHTML = level;
+
+statistics();
+clear(stackCtx);
+clear(activeCtx);
+clear(holdCtx);
+
+
+menu();
+
+// Only start a loop if one is not running already.
+if (gameState === 3) {
+gameState = 2;
+gameLoop();
+} else {
+gameState = 2;
+}
 }
 
 function range(start, end, inc) {
-	inc = inc || 1;
-	var array = [];
-	for (var i = start; i < end; i += inc) {
-		array.push(i);
-	}
-	return array;
+inc = inc || 1;
+var array = [];
+for (var i = start; i < end; i += inc) {
+array.push(i);
+}
+return array;
 }
 
 /**
-	* Add divisor method so we can do clock arithmetics. This is later used to
-	*  determine tetromino orientation.
+* Add divisor method so we can do clock arithmetics. This is later used to
+*  determine tetromino orientation.
 */
 Number.prototype.mod = function(n) {
-	return ((this % n) + n) % n;
+return ((this % n) + n) % n;
 };
 
 /**
-	* Shim.
+* Shim.
 */
 window.requestAnimFrame = (function () {
-	/*return window.requestAnimationFrame       ||
-		window.mozRequestAnimationFrame    ||
-		window.webkitRequestAnimationFrame ||
-		function (callback) {
-		window.setTimeout(callback, 1000 / 60);
-		};
-	*/
-	return function (callback) {
-		window.setTimeout(callback, blockSpeed / 60);
-	};
+/*return window.requestAnimationFrame       ||
+window.mozRequestAnimationFrame    ||
+window.webkitRequestAnimationFrame ||
+function (callback) {
+window.setTimeout(callback, 1000 / 60);
+};
+*/
+return function (callback) {
+window.setTimeout(callback, blockSpeed / 60);
+};
 })();
 
 function pause() {
-	if (gameState === 0) {
-		paused = true;
-		startPauseTime = Date.now();
-		msg.innerHTML = "Paused";
-		menu(4);    
-	}
+if (gameState === 0) {
+paused = true;
+startPauseTime = Date.now();
+msg.innerHTML = "Paused";
+menu(4);    
+}
 }
 
 function unpause() {
-	paused = false;
-	pauseTime += (Date.now() - startPauseTime);
-	msg.innerHTML = '';
-	menu();
+paused = false;
+pauseTime += (Date.now() - startPauseTime);
+msg.innerHTML = '';
+menu();
 }
 
 /**
-	* Park Miller "Minimal Standard" PRNG.
+* Park Miller "Minimal Standard" PRNG.
 */
 //TODO put random seed method in here.
 var rng = new (function() {
-	this.seed = 1;
-	this.next = function() {
-		// Returns a float between 0.0, and 1.0
-		return (this.gen() / 2147483647);
-	}
-	this.gen = function() {
-		return this.seed = (this.seed * 16807) % 2147483647;
-	}
+this.seed = 1;
+this.next = function() {
+// Returns a float between 0.0, and 1.0
+return (this.gen() / 2147483647);
+}
+this.gen = function() {
+return this.seed = (this.seed * 16807) % 2147483647;
+}
 })();
 
 /**
-	* Draws the stats next to the tetrion.
+* Draws the stats next to the tetrion.
 */
 function statistics() {
-	/*var time = Date.now() - startTime - pauseTime;
-		var seconds = (time / 1000 % 60).toFixed(2);
-		var minutes = ~~(time / 60000);
-		statsTime.innerHTML = (minutes < 10 ? '0' : '') + minutes +
-	(seconds < 10 ? ':0' : ':') + seconds;*/
+/*var time = Date.now() - startTime - pauseTime;
+var seconds = (time / 1000 % 60).toFixed(2);
+var minutes = ~~(time / 60000);
+statsTime.innerHTML = (minutes < 10 ? '0' : '') + minutes +
+(seconds < 10 ? ':0' : ':') + seconds;*/
 }
 
 // ========================== View ============================================
 
 /**
-	* Draws grid in background.
+* Draws grid in background.
 */
 function bg(ctx) {
-	ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-	ctx.fillStyle = '#1c1c1c';
-	for (var x = -1; x < ctx.canvas.width + 1; x += cellSize) {
-		ctx.fillRect(x, 0, 2, ctx.canvas.height);
-	}
-	for (var y = -1; y < ctx.canvas.height + 1; y += cellSize) {
-		ctx.fillRect(0, y, ctx.canvas.width, 2);
-	}
+ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+ctx.fillStyle = '#1c1c1c';
+for (var x = -1; x < ctx.canvas.width + 1; x += cellSize) {
+ctx.fillRect(x, 0, 2, ctx.canvas.height);
+}
+for (var y = -1; y < ctx.canvas.height + 1; y += cellSize) {
+ctx.fillRect(0, y, ctx.canvas.width, 2);
+}
 }
 
 /**
-	* Draws a pre-rendered mino.
+* Draws a pre-rendered mino.
 */
 function drawCell(x, y, color, ctx) {
-	x = x * cellSize;
-	x = ~~x;
-	y = ~~y * cellSize - 2 * cellSize;
-	ctx.drawImage(spriteCanvas, color * cellSize, 0, cellSize, cellSize, x, y, cellSize, cellSize);
+x = x * cellSize;
+x = ~~x;
+y = ~~y * cellSize - 2 * cellSize;
+ctx.drawImage(spriteCanvas, color * cellSize, 0, cellSize, cellSize, x, y, cellSize, cellSize);
 }
 
 /**
-	* Pre-renders all mino types in all colors.
+* Pre-renders all mino types in all colors.
 */
 function makeSprite() {
-	//console.log("making sprite");
-	var shaded = [
-		// 0         +10        -10        -20
-		['#c1c1c1', '#dddddd', '#a6a6a6', '#8b8b8b'],
-		['#25bb9b', '#4cd7b6', '#009f81', '#008568'],
-		['#3397d9', '#57b1f6', '#007dbd', '#0064a2'],
-		['#e67e23', '#ff993f', '#c86400', '#a94b00'],
-		['#efc30f', '#ffdf3a', '#d1a800', '#b38e00'],
-		['#9ccd38', '#b9e955', '#81b214', '#659700'],
-		['#9c5ab8', '#b873d4', '#81409d', '#672782'],
-		['#e64b3c', '#ff6853', '#c62c25', '#a70010'],
-		['#898989', '#a3a3a3', '#6f6f6f', '#575757']
-	];
-	var glossy = [
-		//25         37         52         -21        -45
-		['#ffffff', '#ffffff', '#ffffff', '#888888', '#4d4d4d'],
-		['#7bffdf', '#9fffff', '#ccffff', '#008165', '#00442e'],
-		['#6cdcff', '#93feff', '#c2ffff', '#00629f', '#002c60'],
-		['#ffc166', '#ffe386', '#ffffb0', '#aa4800', '#650500'],
-		['#ffff6a', '#ffff8c', '#ffffb8', '#b68a00', '#714f00'],
-		['#efff81', '#ffffa2', '#ffffcd', '#6b9200', '#2c5600'],
-		['#dc9dfe', '#ffbeff', '#ffe9ff', '#5d287e', '#210043'],
-		['#ff9277', '#ffb497', '#ffe0bf', '#a7000a', '#600000'],
-		['#cbcbcb', '#ededed', '#ffffff', '#545454', '#1f1f1f']
-	];
-	var tgm = [
-		['#7b7b7b', '#303030', '#6b6b6b', '#363636'],
-		['#f08000', '#a00000', '#e86008', '#b00000'],
-		['#00a8f8', '#0000b0', '#0090e8', '#0020c0'],
-		['#f8a800', '#b84000', '#e89800', '#c85800'],
-		['#e8e000', '#886800', '#d8c800', '#907800'],
-		['#f828f8', '#780078', '#e020e0', '#880088'],
-		['#00e8f0', '#0070a0', '#00d0e0', '#0080a8'],
-		['#78f800', '#007800', '#58e000', '#008800'],
-		['#7b7b7b', '#303030', '#6b6b6b', '#363636'],
-	];
-	var world = [];
-	world[0] = tgm[0];
-	world[1] = tgm[6];
-	world[2] = tgm[2];
-	world[3] = tgm[3];
-	world[4] = tgm[4];
-	world[5] = tgm[7];
-	world[6] = tgm[5];
-	world[7] = tgm[1];
-	world[8] = tgm[8];
-	
-	spriteCanvas.width = cellSize * 9;
-	spriteCanvas.height = cellSize;
-	for (var i = 0; i < 9; i++) {
-		var x = i * cellSize;
-		if (settings.Block === 0) {
-			// Shaded
-			spriteCtx.fillStyle = shaded[i][1];
-			spriteCtx.fillRect(x, 0, cellSize, cellSize);
-			
-			spriteCtx.fillStyle = shaded[i][3];
-			spriteCtx.fillRect(x, cellSize / 2, cellSize, cellSize / 2);
-			
-			spriteCtx.fillStyle = shaded[i][0];
-			spriteCtx.beginPath();
-			spriteCtx.moveTo(x, 0);
-			spriteCtx.lineTo(x + cellSize / 2, cellSize / 2);
-			spriteCtx.lineTo(x, cellSize);
-			spriteCtx.fill();
-			
-			spriteCtx.fillStyle = shaded[i][2];
-			spriteCtx.beginPath();
-			spriteCtx.moveTo(x + cellSize, 0);
-			spriteCtx.lineTo(x + cellSize / 2, cellSize / 2);
-			spriteCtx.lineTo(x + cellSize, cellSize);
-			spriteCtx.fill();
-		}
-		else if (settings.Block === 1) {
-			// Flat
-			spriteCtx.fillStyle = shaded[i][0];
-			spriteCtx.fillRect(x, 0, cellSize, cellSize);
-		}
-		else if (settings.Block === 2) {
-			// Glossy
-			var k = Math.max(~~(cellSize * 0.083), 1);
-			
-			var grad = spriteCtx.createLinearGradient(x, 0, x + cellSize, cellSize);
-			grad.addColorStop(0.5, glossy[i][3]);
-			grad.addColorStop(1, glossy[i][4]);
-			spriteCtx.fillStyle = grad;
-			spriteCtx.fillRect(x, 0, cellSize, cellSize);
-			
-			var grad = spriteCtx.createLinearGradient(x, 0, x + cellSize, cellSize);
-			grad.addColorStop(0, glossy[i][2]);
-			grad.addColorStop(0.5, glossy[i][1]);
-			spriteCtx.fillStyle = grad;
-			spriteCtx.fillRect(x, 0, cellSize - k, cellSize - k);
-			
-			var grad = spriteCtx.createLinearGradient(x + k, k, x + cellSize - k, cellSize - k);
-			grad.addColorStop(0, shaded[i][0]);
-			grad.addColorStop(0.5, glossy[i][0]);
-			grad.addColorStop(0.5, shaded[i][0]);
-			grad.addColorStop(1, glossy[i][0]);
-			spriteCtx.fillStyle = grad;
-			spriteCtx.fillRect(x + k, k, cellSize - k * 2, cellSize - k * 2);
-			
-		}
-		else if (settings.Block === 3 || settings.Block === 4) {
-			// Arika
-			if (settings.Block === 4) tgm = world;
-			var k = Math.max(~~(cellSize * 0.125), 1);
-			
-			spriteCtx.fillStyle = tgm[i][1];
-			spriteCtx.fillRect(x, 0, cellSize, cellSize);
-			spriteCtx.fillStyle = tgm[i][0];
-			spriteCtx.fillRect(x, 0, cellSize, ~~(cellSize / 2));
-			
-			var grad = spriteCtx.createLinearGradient(x, k, x, cellSize - k);
-			grad.addColorStop(0, tgm[i][2]);
-			grad.addColorStop(1, tgm[i][3]);
-			spriteCtx.fillStyle = grad;
-			spriteCtx.fillRect(x + k, k, cellSize - k*2, cellSize - k*2);
-			
-			var grad = spriteCtx.createLinearGradient(x, k, x, cellSize);
-			grad.addColorStop(0, tgm[i][0]);
-			grad.addColorStop(1, tgm[i][3]);
-			spriteCtx.fillStyle = grad;
-			spriteCtx.fillRect(x, k, k, cellSize - k);
-			
-			var grad = spriteCtx.createLinearGradient(x, 0, x, cellSize - k);
-			grad.addColorStop(0, tgm[i][2]);
-			grad.addColorStop(1, tgm[i][1]);
-			spriteCtx.fillStyle = grad;
-			spriteCtx.fillRect(x + cellSize - k, 0, k, cellSize - k);
-		}
-		else if(settings.Block == 5){
-			// Images
-			//spriteCtx.fillStyle = shaded[i][0];
-			//spriteCtx.fillRect(x, 0, cellSize, cellSize);
-			
-			//console.log("filling rect" + x + " " + spriteCtx);
-			spriteCtx.fillStyle = pattern[i];
-			spriteCtx.fillRect(x, 0, cellSize, cellSize);
-			spriteCtx.fill();
-			
-		}
-	}
+//console.log("making sprite");
+var shaded = [
+// 0         +10        -10        -20
+['#c1c1c1', '#dddddd', '#a6a6a6', '#8b8b8b'],
+['#25bb9b', '#4cd7b6', '#009f81', '#008568'],
+['#3397d9', '#57b1f6', '#007dbd', '#0064a2'],
+['#e67e23', '#ff993f', '#c86400', '#a94b00'],
+['#efc30f', '#ffdf3a', '#d1a800', '#b38e00'],
+['#9ccd38', '#b9e955', '#81b214', '#659700'],
+['#9c5ab8', '#b873d4', '#81409d', '#672782'],
+['#e64b3c', '#ff6853', '#c62c25', '#a70010'],
+['#898989', '#a3a3a3', '#6f6f6f', '#575757']
+];
+var glossy = [
+//25         37         52         -21        -45
+['#ffffff', '#ffffff', '#ffffff', '#888888', '#4d4d4d'],
+['#7bffdf', '#9fffff', '#ccffff', '#008165', '#00442e'],
+['#6cdcff', '#93feff', '#c2ffff', '#00629f', '#002c60'],
+['#ffc166', '#ffe386', '#ffffb0', '#aa4800', '#650500'],
+['#ffff6a', '#ffff8c', '#ffffb8', '#b68a00', '#714f00'],
+['#efff81', '#ffffa2', '#ffffcd', '#6b9200', '#2c5600'],
+['#dc9dfe', '#ffbeff', '#ffe9ff', '#5d287e', '#210043'],
+['#ff9277', '#ffb497', '#ffe0bf', '#a7000a', '#600000'],
+['#cbcbcb', '#ededed', '#ffffff', '#545454', '#1f1f1f']
+];
+var tgm = [
+['#7b7b7b', '#303030', '#6b6b6b', '#363636'],
+['#f08000', '#a00000', '#e86008', '#b00000'],
+['#00a8f8', '#0000b0', '#0090e8', '#0020c0'],
+['#f8a800', '#b84000', '#e89800', '#c85800'],
+['#e8e000', '#886800', '#d8c800', '#907800'],
+['#f828f8', '#780078', '#e020e0', '#880088'],
+['#00e8f0', '#0070a0', '#00d0e0', '#0080a8'],
+['#78f800', '#007800', '#58e000', '#008800'],
+['#7b7b7b', '#303030', '#6b6b6b', '#363636'],
+];
+var world = [];
+world[0] = tgm[0];
+world[1] = tgm[6];
+world[2] = tgm[2];
+world[3] = tgm[3];
+world[4] = tgm[4];
+world[5] = tgm[7];
+world[6] = tgm[5];
+world[7] = tgm[1];
+world[8] = tgm[8];
+
+spriteCanvas.width = cellSize * 9;
+spriteCanvas.height = cellSize;
+for (var i = 0; i < 9; i++) {
+var x = i * cellSize;
+if (settings.Block === 0) {
+// Shaded
+spriteCtx.fillStyle = shaded[i][1];
+spriteCtx.fillRect(x, 0, cellSize, cellSize);
+
+spriteCtx.fillStyle = shaded[i][3];
+spriteCtx.fillRect(x, cellSize / 2, cellSize, cellSize / 2);
+
+spriteCtx.fillStyle = shaded[i][0];
+spriteCtx.beginPath();
+spriteCtx.moveTo(x, 0);
+spriteCtx.lineTo(x + cellSize / 2, cellSize / 2);
+spriteCtx.lineTo(x, cellSize);
+spriteCtx.fill();
+
+spriteCtx.fillStyle = shaded[i][2];
+spriteCtx.beginPath();
+spriteCtx.moveTo(x + cellSize, 0);
+spriteCtx.lineTo(x + cellSize / 2, cellSize / 2);
+spriteCtx.lineTo(x + cellSize, cellSize);
+spriteCtx.fill();
+}
+else if (settings.Block === 1) {
+// Flat
+spriteCtx.fillStyle = shaded[i][0];
+spriteCtx.fillRect(x, 0, cellSize, cellSize);
+}
+else if (settings.Block === 2) {
+// Glossy
+var k = Math.max(~~(cellSize * 0.083), 1);
+
+var grad = spriteCtx.createLinearGradient(x, 0, x + cellSize, cellSize);
+grad.addColorStop(0.5, glossy[i][3]);
+grad.addColorStop(1, glossy[i][4]);
+spriteCtx.fillStyle = grad;
+spriteCtx.fillRect(x, 0, cellSize, cellSize);
+
+var grad = spriteCtx.createLinearGradient(x, 0, x + cellSize, cellSize);
+grad.addColorStop(0, glossy[i][2]);
+grad.addColorStop(0.5, glossy[i][1]);
+spriteCtx.fillStyle = grad;
+spriteCtx.fillRect(x, 0, cellSize - k, cellSize - k);
+
+var grad = spriteCtx.createLinearGradient(x + k, k, x + cellSize - k, cellSize - k);
+grad.addColorStop(0, shaded[i][0]);
+grad.addColorStop(0.5, glossy[i][0]);
+grad.addColorStop(0.5, shaded[i][0]);
+grad.addColorStop(1, glossy[i][0]);
+spriteCtx.fillStyle = grad;
+spriteCtx.fillRect(x + k, k, cellSize - k * 2, cellSize - k * 2);
+
+}
+else if (settings.Block === 3 || settings.Block === 4) {
+// Arika
+if (settings.Block === 4) tgm = world;
+var k = Math.max(~~(cellSize * 0.125), 1);
+
+spriteCtx.fillStyle = tgm[i][1];
+spriteCtx.fillRect(x, 0, cellSize, cellSize);
+spriteCtx.fillStyle = tgm[i][0];
+spriteCtx.fillRect(x, 0, cellSize, ~~(cellSize / 2));
+
+var grad = spriteCtx.createLinearGradient(x, k, x, cellSize - k);
+grad.addColorStop(0, tgm[i][2]);
+grad.addColorStop(1, tgm[i][3]);
+spriteCtx.fillStyle = grad;
+spriteCtx.fillRect(x + k, k, cellSize - k*2, cellSize - k*2);
+
+var grad = spriteCtx.createLinearGradient(x, k, x, cellSize);
+grad.addColorStop(0, tgm[i][0]);
+grad.addColorStop(1, tgm[i][3]);
+spriteCtx.fillStyle = grad;
+spriteCtx.fillRect(x, k, k, cellSize - k);
+
+var grad = spriteCtx.createLinearGradient(x, 0, x, cellSize - k);
+grad.addColorStop(0, tgm[i][2]);
+grad.addColorStop(1, tgm[i][1]);
+spriteCtx.fillStyle = grad;
+spriteCtx.fillRect(x + cellSize - k, 0, k, cellSize - k);
+}
+else if(settings.Block == 5){
+// Images
+//spriteCtx.fillStyle = shaded[i][0];
+//spriteCtx.fillRect(x, 0, cellSize, cellSize);
+
+//console.log("filling rect" + x + " " + spriteCtx);
+spriteCtx.fillStyle = pattern[i];
+spriteCtx.fillRect(x, 0, cellSize, cellSize);
+spriteCtx.fill();
+
+}
+}
 }
 
 /**
-	* Clear canvas.
+* Clear canvas.
 */
 function clear(ctx) {
-	ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
 }
 
 /**
-	* Draws a 2d array of minos.
+* Draws a 2d array of minos.
 */
 function draw(tetro, cx, cy, ctx, color) {
-	for (var x = 0, len = tetro.length; x < len; x++) {
-		for (var y = 0, wid = tetro[x].length; y < wid; y++) {
-			var myColor = color !== void 0 ? color : tetro[x][y];
-			//console.log("draw from tetris " + color + myColor + tetro[x][y]);
-			if (tetro[x][y]) drawCell(x + cx, y + cy, myColor, ctx);
-		}
-	}
+for (var x = 0, len = tetro.length; x < len; x++) {
+for (var y = 0, wid = tetro[x].length; y < wid; y++) {
+var myColor = color !== void 0 ? color : tetro[x][y];
+//console.log("draw from tetris " + color + myColor + tetro[x][y]);
+if (tetro[x][y]) drawCell(x + cx, y + cy, myColor, ctx);
+}
+}
 }
 
 // ========================== Controller ======================================
@@ -852,84 +860,84 @@ var iFrequency = 200;
 var myInterval = 0;
 var loopActive = false;
 function addPointsOnKeyDown(){
-	score += piecesValues[piece.index];
-	statsScore.innerHTML = score;
+score += piecesValues[piece.index];
+statsScore.innerHTML = score;
 }
 function startLoop() {
-	loopActive = true;
-	if(myInterval > 0) 
-	clearInterval(myInterval);  // stop
-	myInterval = setInterval( "addPointsOnKeyDown()", iFrequency );  // run
+loopActive = true;
+if(myInterval > 0) 
+clearInterval(myInterval);  // stop
+myInterval = setInterval( "addPointsOnKeyDown()", iFrequency );  // run
 }
 function stopLoop(){
-	loopActive = false;
-	clearInterval(myInterval);
+loopActive = false;
+clearInterval(myInterval);
 }
 
 function stop(){
-	clearInterval(myInterval);
+clearInterval(myInterval);
 }
 addEventListener('keydown', function(e) {
-	// TODO send to menu or game depending on context.
-	if ([32,37,38,39,40].indexOf(e.keyCode) !== -1)
-    e.preventDefault();
-	//TODO if active, prevent default for binded keys
-	//if (bindsArr.indexOf(e.keyCode) !== -1)
-	//  e.preventDefault();
-	if (e.keyCode === binds.pause) {
-		if (paused) {
-			unpause();
-			} else {
-			pause();
-		}
-	}
-	if (e.keyCode === binds.retry) {
-		init(gametype);
-	}
-	if (!watchingReplay) {
-		if (e.keyCode === binds.moveLeft) {
-			keysDown |= flags.moveLeft;
-			//piece.finesse++
-			} else if (e.keyCode === binds.moveRight) {
-			keysDown |= flags.moveRight;
-			} else if (e.keyCode === binds.moveDown) {
-			startLoop();
-			keysDown |= flags.moveDown;
-			} else if (e.keyCode === binds.hardDrop) {
-			keysDown |= flags.hardDrop;
-			} else if (e.keyCode === binds.rotRight) {
-			keysDown |= flags.rotRight;
-			} else if (e.keyCode === binds.rotLeft) {
-			keysDown |= flags.rotLeft;
-			} else if (e.keyCode === binds.rot180) {
-			keysDown |= flags.rot180;
-			} else if (e.keyCode === binds.holdPiece) {
-			keysDown |= flags.holdPiece;
-		}
-	}
+// TODO send to menu or game depending on context.
+if ([32,37,38,39,40].indexOf(e.keyCode) !== -1)
+e.preventDefault();
+//TODO if active, prevent default for binded keys
+//if (bindsArr.indexOf(e.keyCode) !== -1)
+//  e.preventDefault();
+if (e.keyCode === binds.pause) {
+if (paused) {
+unpause();
+} else {
+pause();
+}
+}
+if (e.keyCode === binds.retry) {
+init(gametype);
+}
+if (!watchingReplay) {
+if (e.keyCode === binds.moveLeft) {
+keysDown |= flags.moveLeft;
+//piece.finesse++
+} else if (e.keyCode === binds.moveRight) {
+keysDown |= flags.moveRight;
+} else if (e.keyCode === binds.moveDown) {
+startLoop();
+keysDown |= flags.moveDown;
+} else if (e.keyCode === binds.hardDrop) {
+keysDown |= flags.hardDrop;
+} else if (e.keyCode === binds.rotRight) {
+keysDown |= flags.rotRight;
+} else if (e.keyCode === binds.rotLeft) {
+keysDown |= flags.rotLeft;
+} else if (e.keyCode === binds.rot180) {
+keysDown |= flags.rot180;
+} else if (e.keyCode === binds.holdPiece) {
+keysDown |= flags.holdPiece;
+}
+}
 }, false);
 addEventListener('keyup', function(e) {
-	if (!watchingReplay) {
-		if (e.keyCode === binds.moveLeft && keysDown & flags.moveLeft) {
-			keysDown ^= flags.moveLeft;
-			} else if (e.keyCode === binds.moveRight && keysDown & flags.moveRight) {
-			keysDown ^= flags.moveRight;
-			} else if (e.keyCode === binds.moveDown && keysDown & flags.moveDown) {
-			//console.log("down arrow -  key up, stopping score adding");
-			stopLoop();
-			keysDown ^= flags.moveDown;
-			} else if (e.keyCode === binds.hardDrop && keysDown & flags.hardDrop) {
-			keysDown ^= flags.hardDrop;
-			} else if (e.keyCode === binds.rotRight && keysDown & flags.rotRight) {
-			keysDown ^= flags.rotRight;
-			} else if (e.keyCode === binds.rotLeft && keysDown & flags.rotLeft) {
-			keysDown ^= flags.rotLeft;
-			} else if (e.keyCode === binds.rot180 && keysDown & flags.rot180) {
-			keysDown ^= flags.rot180;
-			} else if (e.keyCode === binds.holdPiece && keysDown & flags.holdPiece) {
-			keysDown ^= flags.holdPiece;
-		}
-	}
+if (!watchingReplay) {
+if (e.keyCode === binds.moveLeft && keysDown & flags.moveLeft) {
+keysDown ^= flags.moveLeft;
+} else if (e.keyCode === binds.moveRight && keysDown & flags.moveRight) {
+keysDown ^= flags.moveRight;
+} else if (e.keyCode === binds.moveDown && keysDown & flags.moveDown) {
+//console.log("down arrow -  key up, stopping score adding");
+stopLoop();
+keysDown ^= flags.moveDown;
+} else if (e.keyCode === binds.hardDrop && keysDown & flags.hardDrop) {
+keysDown ^= flags.hardDrop;
+} else if (e.keyCode === binds.rotRight && keysDown & flags.rotRight) {
+keysDown ^= flags.rotRight;
+} else if (e.keyCode === binds.rotLeft && keysDown & flags.rotLeft) {
+keysDown ^= flags.rotLeft;
+} else if (e.keyCode === binds.rot180 && keysDown & flags.rot180) {
+keysDown ^= flags.rot180;
+} else if (e.keyCode === binds.holdPiece && keysDown & flags.holdPiece) {
+keysDown ^= flags.holdPiece;
+}
+}
 }, false);
 
 
@@ -937,203 +945,203 @@ addEventListener('keyup', function(e) {
 
 //TODO Cleanup gameloop and update.
 /**
-	* Runs every frame.
+* Runs every frame.
 */
 function update() {
-	//TODO Das preservation broken.
-	if (lastKeys !== keysDown && !watchingReplay) {
-		replayKeys[frame] = keysDown;
-		} else if (frame in replayKeys) {
-		keysDown = replayKeys[frame];
-	}
-	
-	if (!(lastKeys & flags.holdPiece) && flags.holdPiece & keysDown) {
-		piece.hold();
-	}
-	
-	if (flags.rotLeft & keysDown && !(lastKeys & flags.rotLeft)) {
-		piece.rotate(-1);
-		piece.finesse++;
-		} else if (flags.rotRight & keysDown && !(lastKeys & flags.rotRight)) {
-		piece.rotate(1);
-		piece.finesse++;
-		} else if (flags.rot180 & keysDown && !(lastKeys & flags.rot180)) {
-		piece.rotate(1);
-		piece.rotate(1);
-		piece.finesse++;
-	}
-	
-	piece.checkShift();
-	
-	if (flags.moveDown & keysDown) {
-		piece.shiftDown();
-		//piece.finesse++;
-	}
-	if (!(lastKeys & flags.hardDrop) && flags.hardDrop & keysDown) {
-		piece.hardDrop();
-	}
-	
-	piece.update();
-	
-	// Win
-	// TODO
-	if (lines >= lineLimit) {
-		gameState = 1;
-		msg.innerHTML = 'GREAT!';
-		hideSidePanels();
-		EndGame();
-		menu(3);
-	}
-	
-	statistics();
-	
-	if (lastKeys !== keysDown) {
-		lastKeys = keysDown;
-	}
+//TODO Das preservation broken.
+if (lastKeys !== keysDown && !watchingReplay) {
+replayKeys[frame] = keysDown;
+} else if (frame in replayKeys) {
+keysDown = replayKeys[frame];
+}
+
+if (!(lastKeys & flags.holdPiece) && flags.holdPiece & keysDown) {
+piece.hold();
+}
+
+if (flags.rotLeft & keysDown && !(lastKeys & flags.rotLeft)) {
+piece.rotate(-1);
+piece.finesse++;
+} else if (flags.rotRight & keysDown && !(lastKeys & flags.rotRight)) {
+piece.rotate(1);
+piece.finesse++;
+} else if (flags.rot180 & keysDown && !(lastKeys & flags.rot180)) {
+piece.rotate(1);
+piece.rotate(1);
+piece.finesse++;
+}
+
+piece.checkShift();
+
+if (flags.moveDown & keysDown) {
+piece.shiftDown();
+//piece.finesse++;
+}
+if (!(lastKeys & flags.hardDrop) && flags.hardDrop & keysDown) {
+piece.hardDrop();
+}
+
+piece.update();
+
+// Win
+// TODO
+if (lines >= lineLimit) {
+gameState = 1;
+msg.innerHTML = 'GREAT!';
+hideSidePanels();
+EndGame();
+menu(3);
+}
+
+statistics();
+
+if (lastKeys !== keysDown) {
+lastKeys = keysDown;
+}
 }
 
 function gameLoop() {
-	requestAnimFrame(gameLoop);
-	
-	//TODO check to see how pause works in replays.
-	frame++;
-	
-	if (gameState === 0) {
-		// Playing
-		
-		if (!paused) {
-			update();
-		}
-		
-		// TODO improve this with 'dirty' flags.
-		if (piece.x !== lastX ||
-		Math.floor(piece.y) !== lastY ||
-		piece.pos !== lastPos ||
-		piece.dirty) {
-			clear(activeCtx);
-			//THIS DRAW GHOST IS BAD drawGhost
-			piece.drawGhost();
-			piece.draw();
-		}
-		lastX = piece.x;
-		lastY = Math.floor(piece.y);
-		lastPos = piece.pos;
-		piece.dirty = false;
-		} else if (gameState === 2) {
-		// Count Down
-		if (frame < 50) {
-			if (msg.innerHTML !== 'READY') msg.innerHTML = 'READY';
-			} else if (frame < 100) {
-			if (msg.innerHTML !== 'GO!') msg.innerHTML = 'GO!';
-			} else {
-			msg.innerHTML = '';
-			gameState = 0;
-			startTime = Date.now();
-			piece.new(preview.next());
-		}
-		// DAS Preload
-		if (lastKeys !== keysDown && !watchingReplay) {
-			replayKeys[frame] = keysDown;
-			} else if (frame in replayKeys) {
-			keysDown = replayKeys[frame];
-		}
-		if (keysDown & flags.moveLeft) {
-			lastKeys = keysDown;
-			piece.shiftDelay = settings.DAS;
-			piece.shiftReleased = false;
-			piece.shiftDir = -1;
-			} else if (keysDown & flags.moveRight) {
-			lastKeys = keysDown;
-			piece.shiftDelay = settings.DAS;
-			piece.shiftReleased = false;
-			piece.shiftDir = 1;
-		}
-		} else if (toGreyRow >= 2){
-		console.log("toGreyRow from tetris.js");
-		/**
-			* Fade to grey animation played when player loses.
-		*/
-		if (toGreyRow === 21)
-		clear(activeCtx);
-		if (frame % 2) {
-			for (var x = 0; x < 10; x++) {
-				if (stack.grid[x][toGreyRow]) stack.grid[x][toGreyRow] = gameState - 1;
-			}
-			stack.draw();
-			toGreyRow--;
-		}
-	}
+requestAnimFrame(gameLoop);
+
+//TODO check to see how pause works in replays.
+frame++;
+
+if (gameState === 0) {
+// Playing
+
+if (!paused) {
+update();
+}
+
+// TODO improve this with 'dirty' flags.
+if (piece.x !== lastX ||
+Math.floor(piece.y) !== lastY ||
+piece.pos !== lastPos ||
+piece.dirty) {
+clear(activeCtx);
+//THIS DRAW GHOST IS BAD drawGhost
+piece.drawGhost();
+piece.draw();
+}
+lastX = piece.x;
+lastY = Math.floor(piece.y);
+lastPos = piece.pos;
+piece.dirty = false;
+} else if (gameState === 2) {
+// Count Down
+if (frame < 50) {
+if (msg.innerHTML !== 'READY') msg.innerHTML = 'READY';
+} else if (frame < 100) {
+if (msg.innerHTML !== 'GO!') msg.innerHTML = 'GO!';
+} else {
+msg.innerHTML = '';
+gameState = 0;
+startTime = Date.now();
+piece.new(preview.next());
+}
+// DAS Preload
+if (lastKeys !== keysDown && !watchingReplay) {
+replayKeys[frame] = keysDown;
+} else if (frame in replayKeys) {
+keysDown = replayKeys[frame];
+}
+if (keysDown & flags.moveLeft) {
+lastKeys = keysDown;
+piece.shiftDelay = settings.DAS;
+piece.shiftReleased = false;
+piece.shiftDir = -1;
+} else if (keysDown & flags.moveRight) {
+lastKeys = keysDown;
+piece.shiftDelay = settings.DAS;
+piece.shiftReleased = false;
+piece.shiftDir = 1;
+}
+} else if (toGreyRow >= 2){
+console.log("toGreyRow from tetris.js");
+/**
+* Fade to grey animation played when player loses.
+*/
+if (toGreyRow === 21)
+clear(activeCtx);
+if (frame % 2) {
+for (var x = 0; x < 10; x++) {
+if (stack.grid[x][toGreyRow]) stack.grid[x][toGreyRow] = gameState - 1;
+}
+stack.draw();
+toGreyRow--;
+}
+}
 }
 
 function getLeaderboard(){
-	$.ajax({
-		url:'game.php',
-		type:'post',
-		data:{
-			action:'getBestPlayers'
-		},
-		success: function(response){
-			//console.log("leaderboard: " + response);
-			var data = JSON.parse(response);
-			var html = "";
-			var rank = 0;
-			html+="<li class='main-li'>";
-			html+="JOUW SCORE";
-			html+="</li>";
-			$.each(data.results, function(i, item){
-				html+="<li>";
-				html+="<div class='bell-with-rank'>"+ (i+1)+ "</div>";
-				html+="<div class='name'>"+item.name+"</div>";
-				html+="<div class='score'>"+item.score+"</div>";
-				html+="</li>";
-			});
-			html+="<li>";
-			html+="<a class='button' onclick='menu(0)'>Done</a>";
-			html+="</li>";
-			//console.log("html made: " + html);
-			//console.log($(".row-hall-of-fame"));
-			$(".row-hall-of-fame").html(html);
-		}
-	});
+$.ajax({
+url:'game.php',
+type:'post',
+data:{
+action:'getBestPlayers'
+},
+success: function(response){
+//console.log("leaderboard: " + response);
+var data = JSON.parse(response);
+var html = "";
+var rank = 0;
+html+="<li class='main-li'>";
+html+="JOUW SCORE";
+html+="</li>";
+$.each(data.results, function(i, item){
+html+="<li>";
+html+="<div class='bell-with-rank'>"+ (i+1)+ "</div>";
+html+="<div class='name'>"+item.name+"</div>";
+html+="<div class='score'>"+item.score+"</div>";
+html+="</li>";
+});
+html+="<li>";
+html+="<a class='button' onclick='menu(0)'>Done</a>";
+html+="</li>";
+//console.log("html made: " + html);
+//console.log($(".row-hall-of-fame"));
+$(".row-hall-of-fame").html(html);
+}
+});
 } 
 $(document).ready(function(){
-	getLeaderboard();
+getLeaderboard();
 });
 
 function EndGame() {
-	console.log("game End");
-	if(score != 0){
-		console.log('result is '+score);
-		$.ajax({
-			url:'game.php',
-			type:'post',
-			data:{
-				action:'checkScore',
-				score:score
-			},
-			success: function(response){
-				var data = JSON.parse(response);
-				console.log(data);
-				/*if(data.top10 == true){
-					$("#score-hall-of-fame").modal("show");
-					}else{
-					$("#leaderboard-box").modal("show");
-					}
-					$(".user-score").text(score);
-					$("#label-place").text(data.rank);
-					$(".place-number-hall_top").text(data.rank);
-				*/
-			}
-		});
-		}else{
-		console.log('result is 0');
-		//$("#leaderboard-box").modal("show");
-		//$(".user-score").text(score);
-	}
-	
-	
+console.log("game End");
+if(score != 0){
+console.log('result is '+score);
+$.ajax({
+url:'game.php',
+type:'post',
+data:{
+action:'checkScore',
+score:score
+},
+success: function(response){
+var data = JSON.parse(response);
+console.log(data);
+/*if(data.top10 == true){
+$("#score-hall-of-fame").modal("show");
+}else{
+$("#leaderboard-box").modal("show");
+}
+$(".user-score").text(score);
+$("#label-place").text(data.rank);
+$(".place-number-hall_top").text(data.rank);
+*/
+}
+});
+}else{
+console.log('result is 0');
+//$("#leaderboard-box").modal("show");
+//$(".user-score").text(score);
+}
+
+
 }
 function sendScore(namev, scorev) {
-	$.ajax({ type:"POST", url:"insertScore.php", data:{name:namev, score:scorev} })
-	.done(function( data ) {console.log("insert response: " + data);getLeaderboard();}); 
+$.ajax({ type:"POST", url:"insertScore.php", data:{name:namev, score:scorev} })
+.done(function( data ) {console.log("insert response: " + data);getLeaderboard();}); 
 }
