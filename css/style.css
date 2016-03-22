@@ -184,6 +184,7 @@ nav li {
 	border:2px solid yellow;
 	box-sizing: border-box;
 	padding: 20px 10px;
+	text-align:center;
 }
 #c1,#c2{
 	box-sizing:border-box;
@@ -212,6 +213,7 @@ nav li {
 	text-align:center;
 }
 #preview{
+	position:static;
 	margin-top:10px;
 }
 #active {

@@ -420,7 +420,7 @@ function resize() {
 				return;
 			}
 		}
-		console.log("all images are ready, making sprite");
+		//console.log("all images are ready, making sprite");
 		makeSprite();
 	}
 	// Redraw graphics
@@ -682,7 +682,7 @@ function drawCell(x, y, color, ctx) {
 	* Pre-renders all mino types in all colors.
 */
 function makeSprite() {
-	console.log("making sprite");
+	//console.log("making sprite");
 	var shaded = [
 		// 0         +10        -10        -20
 		['#c1c1c1', '#dddddd', '#a6a6a6', '#8b8b8b'],
@@ -818,7 +818,7 @@ function makeSprite() {
 			//spriteCtx.fillStyle = shaded[i][0];
 			//spriteCtx.fillRect(x, 0, cellSize, cellSize);
 			
-			console.log("filling rect" + x + " " + spriteCtx);
+			//console.log("filling rect" + x + " " + spriteCtx);
 			spriteCtx.fillStyle = pattern[i];
 			spriteCtx.fillRect(x, 0, cellSize, cellSize);
 			spriteCtx.fill();
@@ -837,18 +837,13 @@ function clear(ctx) {
 /**
 	* Draws a 2d array of minos.
 */
-function draw(tetro, cx, cy, ctx, color, pieceNum) {
-	if(arguments.length < 6){	
-		for (var x = 0, len = tetro.length; x < len; x++) {
-			for (var y = 0, wid = tetro[x].length; y < wid; y++) {
-				var myColor = color !== void 0 ? color : tetro[x][y];
-				console.log("draw from tetris " + color + myColor + tetro[x][y]);
-				if (tetro[x][y]) drawCell(x + cx, y + cy, myColor, ctx);
-			}
+function draw(tetro, cx, cy, ctx, color) {
+	for (var x = 0, len = tetro.length; x < len; x++) {
+		for (var y = 0, wid = tetro[x].length; y < wid; y++) {
+			var myColor = color !== void 0 ? color : tetro[x][y];
+			//console.log("draw from tetris " + color + myColor + tetro[x][y]);
+			if (tetro[x][y]) drawCell(x + cx, y + cy, myColor, ctx);
 		}
-	}
-	else{
-		console.log("piece num");
 	}
 }
 

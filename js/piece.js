@@ -270,7 +270,7 @@ Piece.prototype.draw = function() {
 }
 Piece.prototype.drawGhost = function() {
 	if (!settings.Ghost && !landed) {
-		draw(this.tetro, this.x, this.y + this.getDrop(22), activeCtx, 0);
+		draw(this.tetro, this.x, this.y + this.getDrop(22), activeCtx);
 	}
 	else if (settings.Ghost === 1 && !landed) {
 		activeCtx.globalAlpha = 0.3;

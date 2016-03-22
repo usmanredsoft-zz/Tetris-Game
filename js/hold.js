@@ -3,7 +3,7 @@ function Hold() {
 }
 Hold.prototype.draw = function() {
   clear(holdCtx);
-  console.log('piece: ' + this.piece);
+  //console.log('holding piece: ' + this.piece);
   if (this.piece === 0 || this.piece === 3) {
     draw(pieces[this.piece].tetro, pieces[this.piece].x - 3,
          2 + pieces[this.piece].y, holdCtx);
