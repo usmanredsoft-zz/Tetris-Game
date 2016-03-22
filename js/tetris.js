@@ -379,7 +379,7 @@ function resize() {
 	b.style.height = stackCanvas.height + 'px';
 	stats.style.height = (stackCanvas.height*0.5 -10)+"px";
 	//stats2.style.height = stackCanvas.height*0.2+"px";
-	document.getElementsByClassName("arrow-container")[0].style.height = (stackCanvas.height*0.2 - 10) +"px";
+	document.getElementsByClassName("arrow-container")[0].style.height = (stackCanvas.height*0.2 - 25) +"px";
 	var cHeight = stackCanvas.height*0.27;
 	c.style.height = cHeight*0.8 + "px";
 	

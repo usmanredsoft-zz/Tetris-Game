@@ -61,7 +61,7 @@ td {
 /* Header */
 h1 {
 	color: #fff;
-	font-size: 2rem;
+	font-size: 1.8rem;
 	font-family: Tahoma, sans-serif;
 	margin: 0.65em 0;
 	text-shadow: 0px 0px 2px #00a189;
@@ -159,10 +159,10 @@ nav li {
 	position: relative;
 	overflow: hidden;
 	float: left;
-	margin: 10px 0 0;
+	margin: 10px 0 10px;
 	height:25%;
+	text-align:center;
 	width:98%;
-	margin-bottom:10px;
 }
 #a-with-c{
 	float:left;
@@ -202,9 +202,7 @@ nav li {
     position: absolute;
     z-index: 2;
 }
-#hold,
-#preview,
-#stack {
+#hold, #preview, #stack {
     position: absolute;
     z-index: 2;
 }
@@ -212,6 +210,9 @@ nav li {
 	position:static;
 	margin-top:10px;
 	text-align:center;
+}
+#preview{
+	margin-top:10px;
 }
 #active {
     position: absolute;
