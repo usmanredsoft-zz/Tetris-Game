@@ -394,14 +394,14 @@ table{
 	border:2px solid yellow;
 }
 .arrow-container{
-	border:2px solid yellow;
 	box-sizing:border-box;
 	padding:5px;
 	margin-top:10px;
 	overflow:hidden;
 	text-align:center;
-	width:94%;
+	width:100%;
 }
+/*
 .img-first-row{
 	display:block;
 	width:30%;
@@ -412,7 +412,7 @@ table{
 	width:30%;
 	margin:7px 1.666666% 5px;
 }
-
+*/
 .row-hall-of-fame{
 	padding:0;
 	margin:0;

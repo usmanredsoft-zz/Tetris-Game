@@ -8,7 +8,6 @@
 	</head>
 	<body>
 		<audio style="display:none;" id="line-clear-audio">
-			<source src="sound.ogg" type="audio/ogg">
 			<source src="sound.mp3" type="audio/mpeg">
 		</audio>
 		<canvas id=bg></canvas>
@@ -40,12 +39,6 @@
 					<tr><td id=piece>0</td><th>Piece</th></tr>
 					<tr><th id=time>00:00.00</th></tr>
 				</table>-->
-				<div class="arrow-container">
-					<img src="img/arrowTop.png" class="img-first-row" onclick="arrowTopClick()"/>
-					<img src="img/arrowLeft.png" class="img-down-row" onclick="arrowLeftClick()"/>
-					<img src="img/arrowBottom.png" class="img-down-row" onclick="arrowDownClick()"/>
-					<img src="img/arrowRight.png" class="img-down-row" onclick="arrowRightClick()"/>
-				</div>
 				
 			</div>
 			
@@ -113,6 +106,12 @@
 							<li><a onclick=menu(0)>Main Menu</a></li>
 						</ul>
 					</div>
+					<div class="arrow-container">
+						<img src="img/arrowTop.png" class="img-first-row" onclick="arrowTopClick()"/>
+						<img src="img/arrowLeft.png" class="img-down-row" onclick="arrowLeftClick()"/>
+						<img src="img/arrowBottom.png" class="img-down-row" onclick="arrowDownClick()"/>
+						<img src="img/arrowRight.png" class="img-down-row" onclick="arrowRightClick()"/>
+					</div>
 				</div>
 			</div>
 			
@@ -140,6 +139,7 @@
 				hideSidePanels();
 				
 			</script>
+			<script src="js/detect-mobile.js"></script>
 			<script src="js/tetris.js"></script>
 			<script src="js/piece.js"></script>
 			<script src="js/stack.js"></script>
@@ -147,7 +147,6 @@
 			<script src="js/preview.js"></script>
 			<script src="js/menu.js"></script>
 			<script src="js/bg.js"></script>
-			<script src="js/detect-mobile.js"></script>
 			<script>_gaq=[['_setAccount','UA-30472693-1'],['_trackPageview']];(function(d){var g=d.createElement('script'),s=d.scripts[0];g.src='//www.google-analytics.com/ga.js';s.parentNode.insertBefore(g,s)})(document)</script>
 			<script>
 				function arrowTopClick(){
@@ -166,11 +165,6 @@
 					keysDown |= flags.moveDown;
 					startLoop();
 					setTimeout(function(){console.log("arrowRightClick");stopLoop();keysDown ^= flags.moveDown;}, 150);
-				}
-			</script>
-			<script>		
-				if(!jQuery.browser.mobile){
-					hideArrowPanel();
 				}
 			</script>
 		</body>

@@ -375,8 +375,14 @@ function resize() {
 	//aWithC.style.width = stackCanvas.width*0.5 + 'px';
 	d.style.width = stackCanvas.width*0.5 + 'px';
 	
+	if(jQuery.browser.mobile){
+		b.style.height = stackCanvas.height + 100 + 'px';
+	}
+	else{
+		b.style.height = stackCanvas.height + 'px';
+		hideArrowPanel();
+	}
 	
-	b.style.height = stackCanvas.height + 'px';
 	stats.style.height = (stackCanvas.height*0.5 -10)+"px";
 	//stats2.style.height = stackCanvas.height*0.2+"px";
 	document.getElementsByClassName("arrow-container")[0].style.height = (stackCanvas.height*0.2 - 25) +"px";
