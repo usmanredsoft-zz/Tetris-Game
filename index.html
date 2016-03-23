@@ -39,9 +39,7 @@
 					<tr><td id=piece>0</td><th>Piece</th></tr>
 					<tr><th id=time>00:00.00</th></tr>
 				</table>-->
-				
-			</div>
-			
+				</div>
 			<div id="b">
 				<canvas id=bgStack></canvas>
 				<canvas id=stack></canvas>
@@ -105,19 +103,21 @@
 						<ul  class="row-hall-of-fame">
 							<li><a onclick=menu(0)>Main Menu</a></li>
 						</ul>
-					</div>
+						</div>
 					<div class="arrow-container">
+						<div class="inline-block full-height">
 						<img src="img/arrowTop.png" class="img-first-row" onclick="arrowTopClick()"/>
 						<img src="img/arrowLeft.png" class="img-down-row" onclick="arrowLeftClick()"/>
 						<img src="img/arrowBottom.png" class="img-down-row" onclick="arrowDownClick()"/>
 						<img src="img/arrowRight.png" class="img-down-row" onclick="arrowRightClick()"/>
+						</div>
 					</div>
 				</div>
 			</div>
 			
 			<canvas id="sprite"></canvas>
 			<script src="js/jquery.min.js"></script>
-			<script src="js/bootstrap.min.js"></script>
+			<!--<script src="js/bootstrap.min.js"></script>-->
 			<script>
 				function hideSidePanels(){
 					document.getElementById("d").style.visibility = "hidden";

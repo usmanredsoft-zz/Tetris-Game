@@ -362,7 +362,8 @@ function resize() {
 	console.log("cell Size is: " + cellSize);
 	
 	var pad = (window.innerHeight - (cellSize * 20 + 2)) / 4 + 'px';
-	content.style.padding = pad + ' 0';
+	var contentPad = (window.innerHeight - (cellSize * 20 + 2)) / 8 + 'px + 0px';
+	content.style.padding = contentPad;
 	stats.style.bottom = pad;
 	
 	// Size elements
@@ -373,10 +374,24 @@ function resize() {
 	stackCanvas.height = activeCanvas.height = bgStackCanvas.height = cellSize * 20;
 	b.style.width = stackCanvas.width + 'px';
 	//aWithC.style.width = stackCanvas.width*0.5 + 'px';
-	d.style.width = stackCanvas.width*0.5 + 'px';
+	d.style.width = stackCanvas.width*0.75 + 'px';
 	
 	if(jQuery.browser.mobile){
 		b.style.height = stackCanvas.height + 100 + 'px';
+		var tapped=false;
+		$(".arrow-container img").on("touchstart",function(e){
+			if(!tapped){ //if tap is not set, set up single tap
+				tapped=setTimeout(function(){
+					tapped=null;
+					//insert things you want to do when single tapped
+				},300);   //wait 300ms then run single click code
+				} else {//tapped within 300ms of last tap. double tap
+				e.preventDefault();
+				clearTimeout(tapped); //stop single tap callback
+				tapped=null;
+				//insert things you want to do when double tapped
+			}
+		});
 	}
 	else{
 		b.style.height = stackCanvas.height + 'px';
@@ -385,7 +400,7 @@ function resize() {
 	
 	stats.style.height = (stackCanvas.height*0.5 -10)+"px";
 	//stats2.style.height = stackCanvas.height*0.2+"px";
-	document.getElementsByClassName("arrow-container")[0].style.height = (stackCanvas.height*0.2 - 25) +"px";
+	//document.getElementsByClassName("arrow-container")[0].style.height = (stackCanvas.height*0.2 - 25) +"px";
 	var cHeight = stackCanvas.height*0.27;
 	c.style.height = cHeight*0.8 + "px";
 	
@@ -487,7 +502,7 @@ function resize() {
 	}
 	
 	if (settings.Grid === 1)
-    bg(bgStackCtx);
+	bg(bgStackCtx);
 	
 	if (gameState === 0) {
 		piece.drawGhost();
@@ -878,7 +893,7 @@ function stop(){
 addEventListener('keydown', function(e) {
 	// TODO send to menu or game depending on context.
 	if ([32,37,38,39,40].indexOf(e.keyCode) !== -1)
-    e.preventDefault();
+	e.preventDefault();
 	//TODO if active, prevent default for binded keys
 	//if (bindsArr.indexOf(e.keyCode) !== -1)
 	//  e.preventDefault();
