@@ -379,7 +379,7 @@ function resize() {
 	if(jQuery.browser.mobile){
 		b.style.height = stackCanvas.height + 100 + 'px';
 		var tapped=false;
-		$(".arrow-container img").on("touchstart",function(e){
+		$("html").on("touchstart",function(e){
 			if(!tapped){ //if tap is not set, set up single tap
 				tapped=setTimeout(function(){
 					tapped=null;
