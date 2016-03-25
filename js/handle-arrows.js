@@ -15,3 +15,7 @@ function arrowDownClick(){
 	startLoop();
 	setTimeout(function(){console.log("arrowRightClick");stopLoop();keysDown ^= flags.moveDown;}, 150);
 }
+function holdClick(){
+	keysDown |= flags.holdPiece;
+	setTimeout(function(){console.log("arrowRightClick");keysDown ^= flags.holdPiece;}, 150);
+}
