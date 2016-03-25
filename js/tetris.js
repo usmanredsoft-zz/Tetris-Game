@@ -199,7 +199,7 @@ var finesse = [
 /**
 	* Gameplay specific vars.
 */
-var blockSpeed = 2000;
+var blockSpeed = 1000;
 var gravityUnit = 0.00390625;
 var gravity;
 var gravityArr = (function() {
