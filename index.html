@@ -40,7 +40,7 @@
 					<tr><td id=piece>0</td><th>Piece</th></tr>
 					<tr><th id=time>00:00.00</th></tr>
 				</table>-->
-				</div>
+			</div>
 			<div id="b">
 				<canvas id=bgStack></canvas>
 				<canvas id=stack></canvas>
@@ -104,13 +104,14 @@
 						<ul  class="row-hall-of-fame">
 							<li><a onclick=menu(0)>Main Menu</a></li>
 						</ul>
-						</div>
+					</div>
 					<div class="arrow-container">
 						<div class="inline-block full-height">
-						<img src="img/arrowTop.png" class="img-first-row" onclick="arrowTopClick()"/>
-						<img src="img/arrowLeft.png" class="img-down-row" onclick="arrowLeftClick()"/>
-						<img src="img/arrowBottom.png" class="img-down-row" onclick="arrowDownClick()"/>
-						<img src="img/arrowRight.png" class="img-down-row" onclick="arrowRightClick()"/>
+							<img src="img/arrowTop.png" class="img-first-row" onclick="arrowTopClick()"/>
+							<img src="img/arrowLeft.png" class="img-down-row" onclick="arrowLeftClick()"/>
+							<img src="img/arrowBottom.png" class="img-down-row" onclick="arrowDownClick()"/>
+							<img src="img/arrowRight.png" class="img-down-row" onclick="arrowRightClick()"/>
+							<div class="mobile-button">HOLD</div>
 						</div>
 					</div>
 				</div>
@@ -119,27 +120,7 @@
 			<canvas id="sprite"></canvas>
 			<script src="js/jquery.min.js"></script>
 			<!--<script src="js/bootstrap.min.js"></script>-->
-			<script>
-				function hideSidePanels(){
-					document.getElementById("d").style.visibility = "hidden";
-					document.getElementById("a-with-c").style.visibility = "hidden";
-				}
-				function showSidePanels(){
-					document.getElementById("d").style.visibility = "visible";
-					document.getElementById("a-with-c").style.visibility = "visible";
-				}
-				function hideMainPanel(){
-					document.getElementById("b").style.visibility = "hidden";
-				}
-				function showMainPanel(){
-					document.getElementById("b").style.visibility = "visible";
-				}
-				function hideArrowPanel(){
-					document.getElementsByClassName("arrow-container")[0].style.display = "none";
-				}
-				hideSidePanels();
-				
-			</script>
+			<script src="js/toggle-side-panels.js"></script>
 			<script src="js/detect-mobile.js"></script>
 			<script src="js/tetris.js"></script>
 			<script src="js/piece.js"></script>
@@ -148,26 +129,34 @@
 			<script src="js/preview.js"></script>
 			<script src="js/menu.js"></script>
 			<script src="js/bg.js"></script>
-			<script>_gaq=[['_setAccount','UA-30472693-1'],['_trackPageview']];(function(d){var g=d.createElement('script'),s=d.scripts[0];g.src='//www.google-analytics.com/ga.js';s.parentNode.insertBefore(g,s)})(document)</script>
+		<!--<script>_gaq=[['_setAccount','UA-30472693-1'],['_trackPageview']];(function(d){var g=d.createElement('script'),s=d.scripts[0];g.src='//www.google-analytics.com/ga.js';s.parentNode.insertBefore(g,s)})(document)</script>-->
 			<script>
-				function arrowTopClick(){
-					keysDown |= flags.rotLeft;
-					setTimeout(function(){console.log("arrowTopClick");keysDown ^= flags.rotLeft}, 150);
+				/*function absorbEvent_(event) {
+				console.log(event);
+					var e = event || window.event;
+					e.preventDefault && e.preventDefault();
+					e.stopPropagation && e.stopPropagation();
+					e.cancelBubble = true;
+					e.returnValue = false;
+					return false;
 				}
-				function arrowLeftClick(){
-					keysDown |= flags.moveLeft;
-					setTimeout(function(){console.log("arrowLeftClick");keysDown ^= flags.moveLeft;}, 150);
+				
+				function preventLongPressMenu(node) {
+					node.ontouchstart = absorbEvent_;
+					node.ontouchmove = absorbEvent_;
+					node.ontouchend = absorbEvent_;
+					node.ontouchcancel = absorbEvent_;
 				}
-				function arrowRightClick(){
-					keysDown |= flags.moveRight;
-					setTimeout(function(){console.log("arrowRightClick");keysDown ^= flags.moveRight;}, 150);
-				}
-				function arrowDownClick(){
-					keysDown |= flags.moveDown;
-					startLoop();
-					setTimeout(function(){console.log("arrowRightClick");stopLoop();keysDown ^= flags.moveDown;}, 150);
-				}
+				
+				$(document).ready(function(){
+					preventLongPressMenu(document.getElementsByClassName('arrow-container')[0]);
+					preventLongPressMenu(document.getElementsByClassName('img-down-row')[0]);
+					preventLongPressMenu(document.getElementsByClassName('img-down-row')[1]);
+					preventLongPressMenu(document.getElementsByClassName('img-down-row')[2]);
+					
+				});*/
 			</script>
+			<script src="handle-arrows.js"></script>
 		</body>
 	</html>		
 	
