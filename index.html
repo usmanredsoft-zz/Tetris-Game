@@ -121,7 +121,11 @@
 			<script src="js/jquery.min.js"></script>
 			<!--<script src="js/bootstrap.min.js"></script>-->
 			<script src="js/toggle-side-panels.js"></script>
-			<script src="js/detect-mobile.js"></script>
+			<script>
+			var isMobile = false;
+			if($(window).width() < 1025)
+				isMobile = true;
+			</script>
 			<script src="js/tetris.js"></script>
 			<script src="js/piece.js"></script>
 			<script src="js/stack.js"></script>

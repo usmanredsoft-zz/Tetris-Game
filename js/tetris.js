@@ -376,7 +376,7 @@ function resize() {
 	//aWithC.style.width = stackCanvas.width*0.5 + 'px';
 	d.style.width = stackCanvas.width*0.75 + 'px';
 	
-	if(jQuery.browser.mobile){
+	if(isMobile){
 		b.style.height = stackCanvas.height + 100 + 'px';
 		var tapped=false;
 		$("html").on("touchstart",function(e){
